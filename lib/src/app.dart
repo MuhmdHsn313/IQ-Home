@@ -1,14 +1,22 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:iqhome/src/utils/AppTheme.dart';
 
 class IQHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
-      ),
+      title: 'IQ Home',
+      theme: AppTheme.lightTheme,
+      localizationsDelegates: [
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+      ],
+      locale: Locale('ar'),
+      supportedLocales: [
+        Locale('ar'),
+      ],
       home: Scaffold(),
     );
   }
