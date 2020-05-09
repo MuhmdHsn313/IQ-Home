@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
-import 'package:iqhome/src/widgets/news_card.dart';
 
 class IQHome extends StatelessWidget {
   @override
