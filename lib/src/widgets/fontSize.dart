@@ -1,122 +1,118 @@
 import 'package:flutter/material.dart';
+import 'package:iqhome/src/utils/public_type.dart';
 
-class FontSize extends StatefulWidget {
-  @override
-  _FontSizeState createState() => _FontSizeState();
-}
+class FontSizeWidget extends StatelessWidget {
+  final AppFontSize size;
 
-class _FontSizeState extends State<FontSize> {
-
-
-  bool huge = false ; 
-  bool big = false ; 
-  bool reqular = true ; 
-  bool small  = false ;
-
-
+  const FontSizeWidget({
+    Key key,
+    this.size: AppFontSize.Middle,
+  })  : assert(size != null),
+        super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    double fontSize;
+    switch (size) {
+      case AppFontSize.Small:
+        fontSize = 14;
+        break;
+      case AppFontSize.Middle:
+        fontSize = 16;
+        break;
+      case AppFontSize.Large:
+        fontSize = 18;
+        break;
+      case AppFontSize.Giant:
+        fontSize = 22;
+        break;
+      default:
+        fontSize = 14;
+    }
+
     return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
       children: <Widget>[
-        Align(alignment: Alignment.topRight, 
-        child: Padding(
-          padding: const EdgeInsets.only(right: 17),
-          child: Text("حجم الخط",style: TextStyle(fontSize: 17,color: Color(0xff55AA88)),),
-        )),
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 10),
+          child: Text("حجم الخط", style: Theme.of(context).textTheme.subtitle1),
+        ),
         Container(
           height: 48,
           color: Colors.white,
+          alignment: Alignment.center,
           child: Row(
-            
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              GestureDetector(
-                onTap: (){
-                  setState(() {
-                      huge = true ;  big = false ;  reqular = false ;  small  = false ;
-                    
-                  });
-                },
-                              child: Container(
-                  height: 31,
-                  width: 95,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(bottomLeft: Radius.circular(3),topLeft: Radius.circular(3)),
-                    border: Border.all(color: Color(0xff55AA88),width: 1),
-                    color: huge?Color(0xff55AA88):Colors.white
-                  ),
-                  child: Text("ضخم",textAlign: TextAlign.center,style: TextStyle(fontSize: 20,color: huge?Colors.white:Color(0xff55AA88))),
-                ),
+              SelectFontSize(
+                title: 'صغير',
+                isSelected: size == AppFontSize.Small,
               ),
-               GestureDetector(
-                 onTap: (){
-                  setState(() {
-                      huge = false ;  big = true ;  reqular = false ;  small  = false ;
-                    
-                  });
-                },
-                              child: Container(
-                  height: 31,
-                  width: 95,
-                  decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(3),topLeft: Radius.circular(3)),
-                    border: Border.all(color: Color(0xff55AA88),width: 1),
-                    color: big?Color(0xff55AA88):Colors.white
-
-                  ),
-                  child:  Text("كبير",textAlign: TextAlign.center,style: TextStyle(fontSize: 18,color: big?Colors.white:Color(0xff55AA88))),
-                ),
+              SelectFontSize(
+                title: 'متوسط',
+                isSelected: size == AppFontSize.Middle,
               ),
-               GestureDetector(
-                 onTap: (){
-                  setState(() {
-                      huge = false ;  big = false ;  reqular = true ;  small  = false ;
-                    
-                  });
-                },
-                              child: Container(
-                  height: 31,
-                  width: 95,
-                  decoration: BoxDecoration(
-                    // borderRadius: BorderRadius.only(bottomLeft: Radius.circular(3),topLeft: Radius.circular(3)),
-                    border: Border.all(color: Color(0xff55AA88),width: 1),
-                    color: reqular?Color(0xff55AA88):Colors.white
-                  ),
-                  child:  Text("متوسط",textAlign: TextAlign.center,style: TextStyle(fontSize: 16,color: reqular?Colors.white:Color(0xff55AA88))),
-                ),
+              SelectFontSize(
+                title: 'كبير',
+                isSelected: size == AppFontSize.Large,
               ),
-               GestureDetector(
-                 onTap: (){
-                  setState(() {
-                      huge = false ;  big = false ;  reqular = false ;  small  = true ;
-                    
-                  });
-                },
-                              child: Container(
-                  height: 31,
-                  width: 95,
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.only(bottomRight: Radius.circular(3),topRight: Radius.circular(3)),
-                    border: Border.all(color: Color(0xff55AA88),width: 1),
-                    color: small?Color(0xff55AA88):Colors.white
-                  ),
-                  child:  Text("صغير",textAlign: TextAlign.center,style: TextStyle(fontSize: 14,color: small?Colors.white:Color(0xff55AA88))),
-                ),
+              SelectFontSize(
+                title: 'عملاق',
+                isSelected: size == AppFontSize.Giant,
               ),
             ],
           ),
         ),
-
         Padding(
-          padding: const EdgeInsets.only(right: 32,left: 32,top: 10,bottom: 20),
-          child: Text("""...هذا الخط هو مثال عن الحجم الذي اخترته 
-       .  اختر ماينسابك من حجم الخط حيث يكون مريح في القراءة بالنسبة لك""",textAlign: TextAlign.end,style: TextStyle(
-           color: Color(0xffB0B0B0) ,
-           fontSize: huge?20:big?18:reqular?16:small?14:14
-       ),),
+          padding:
+              const EdgeInsets.only(right: 32, left: 32, top: 10, bottom: 20),
+          child: Text(
+            "هذا الخط هو مثال عن الحجم الذي اخترته..."
+            "اختر ماينسابك من حجم الخط حيث يكون مريح في القراءة بالنسبة لك.",
+            style: TextStyle(
+              color: Color(0xffB0B0B0),
+              fontSize: fontSize,
+            ),
+          ),
         )
       ],
+    );
+  }
+}
+
+class SelectFontSize extends StatelessWidget {
+  final String title;
+  final bool isSelected;
+
+  const SelectFontSize({
+    Key key,
+    @required this.title,
+    @required this.isSelected,
+  })  : assert(title != null),
+        assert(isSelected != null),
+        super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      height: 31,
+      width: 95,
+      alignment: Alignment.center,
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: Theme.of(context).primaryColor,
+          width: 1,
+        ),
+        color: isSelected ? Theme.of(context).primaryColor : Colors.white,
+      ),
+      child: Text(
+        title,
+        textAlign: TextAlign.center,
+        style: TextStyle(
+          fontSize: 14,
+          color: isSelected ? Colors.white : Theme.of(context).primaryColor,
+        ),
+      ),
     );
   }
 }

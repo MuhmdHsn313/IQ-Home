@@ -4,6 +4,8 @@ import 'package:iqhome/src/screens/emergency_screen.dart';
 import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
 
+import 'settingsScreen.dart';
+
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,13 @@ class HomeScreen extends StatelessWidget {
               color: Colors.white,
             ),
             tooltip: 'الاعدادات',
-            onPressed: () {},
+            onPressed: () => Navigator.push(
+              context,
+              CupertinoPageRoute(
+                builder: (context) => SettingsScreen(),
+                fullscreenDialog: true,
+              ),
+            ),
           ),
           actions: [
             IconButton(

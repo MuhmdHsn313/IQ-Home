@@ -1,11 +1,8 @@
-
 import 'package:flutter/material.dart';
 import 'package:iqhome/src/widgets/fontSize.dart';
 import 'package:iqhome/src/widgets/rate.dart';
 import 'package:iqhome/src/widgets/seetingsCheckBox.dart';
 import 'package:iqhome/src/widgets/seetingsItem.dart';
-
-
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -19,37 +16,46 @@ class SettingsScreen extends StatelessWidget {
           "الأعدادات",
           style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
         ),
-        leading: IconButton(
-            icon: Icon(
-              Icons.close,
-              size: 33,
-            ),
-            onPressed: () {}),
       ),
       body: Container(
         child: ListView(
           physics: BouncingScrollPhysics(),
           children: <Widget>[
             Padding(
-              padding: const EdgeInsets.only(bottom: 27,top: 14,right: 18,left: 18),
+              padding: const EdgeInsets.only(
+                  bottom: 27, top: 14, right: 18, left: 18),
               child: Rate(),
             ),
-           
-                  FontSize(),
-              
-          
-             SettingsCheckBox(title: "الوضع المظلم",value: false,),
-             SizedBox(height: 13.5,),
-             SettingsCheckBox(title: "الأشعارات",value: false,),
-             SizedBox(height: 45,),
-             SettingsItem(title: "مصادرنا (المواقع الرسمية)",),
-             SizedBox(height: 8,),
-             SettingsItem(title: "عن التطبيق",),
-             SizedBox(height: 8,),
-             SettingsItem(title: "من نحن",),
-              SizedBox(height: 8,),
-             SettingsItem(title: "شارك التطبيق",)
-             
+            FontSizeWidget(),
+            SettingsCheckBox("الوضع المظلم"),
+            SizedBox(
+              height: 13.5,
+            ),
+            SettingsCheckBox("الأشعارات"),
+            SizedBox(
+              height: 45,
+            ),
+            SettingsItem(
+              title: "مصادرنا (المواقع الرسمية)",
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            SettingsItem(
+              title: "عن التطبيق",
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            SettingsItem(
+              title: "من نحن",
+            ),
+            SizedBox(
+              height: 8,
+            ),
+            SettingsItem(
+              title: "شارك التطبيق",
+            )
           ],
         ),
       ),
