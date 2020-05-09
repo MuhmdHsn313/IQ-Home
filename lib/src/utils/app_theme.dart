@@ -44,5 +44,8 @@ class AppTheme {
         fontWeight: FontWeight.normal,
       ),
     ),
+    primaryIconTheme: IconThemeData(
+      color: Colors.white,
+    ),
   );
 }

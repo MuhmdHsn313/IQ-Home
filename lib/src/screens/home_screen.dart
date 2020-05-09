@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/utils/app_theme.dart';
+import 'package:iqhome/src/screens/emergency_screen.dart';
 import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
 
@@ -30,7 +30,12 @@ class HomeScreen extends StatelessWidget {
                 color: Colors.white,
               ),
               tooltip: 'أرقام الطوارئ',
-              onPressed: () {},
+              onPressed: () => Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => EmergencyScreen(),
+                ),
+              ),
             ),
           ],
           bottom: PreferredSize(

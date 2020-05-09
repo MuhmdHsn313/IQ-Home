@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
+import 'package:iqhome/src/utils/iqhome_icons.dart';
 
 class EmergencyNumber extends StatelessWidget {
   /// TODO: Add model object and view its data in this class.
@@ -25,7 +26,7 @@ class EmergencyNumber extends StatelessWidget {
             ),
             IconButton(
               icon: Icon(
-                Icons.play_for_work,
+                IQHomeIcons.arrow_down_circle,
                 color: Theme.of(context).primaryColor,
               ),
               onPressed: () {},
