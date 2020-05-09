@@ -8,7 +8,8 @@ class AppTheme {
   static const Color backgroundColor = Color(0xffF5F5F5);
   static const Color cardColor = Colors.white;
   static const Color articleBackgroundColor = Color(0xff8D8D8D);
-  static const Color unselectedColor = Color(0xff727272);
+  static const Color disabledColor = Color(0xff727272);
+  static const Color unselectedColor = Color(0xffDADADA);
 
   static ThemeData lightTheme = new ThemeData(
     primaryColor: primaryColor,
@@ -16,10 +17,16 @@ class AppTheme {
     fontFamily: 'Tajawal',
     canvasColor: backgroundColor,
     backgroundColor: backgroundColor,
-    indicatorColor: primaryColor,
+    indicatorColor: primaryColor.withOpacity(0.99),
     accentColor: highlightColor,
-    disabledColor: unselectedColor,
+    disabledColor: disabledColor,
     cardColor: cardColor,
+    unselectedWidgetColor: unselectedColor,
+    primaryTextTheme: TextTheme(
+        bodyText1: TextStyle(
+          color: primaryColor,
+        ),
+    ),
     textTheme: TextTheme(
       headline6: TextStyle(
         fontSize: 15,

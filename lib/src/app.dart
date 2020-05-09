@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:iqhome/src/screens/home_screen.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
 
 class IQHome extends StatelessWidget {
@@ -11,13 +12,14 @@ class IQHome extends StatelessWidget {
       localizationsDelegates: [
         GlobalWidgetsLocalizations.delegate,
         GlobalCupertinoLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
       ],
       locale: Locale('ar'),
       supportedLocales: [
         Locale('ar'),
+        Locale('en'),
       ],
-      home: Scaffold(),
+      home: HomeScreen(),
     );
   }
 }
