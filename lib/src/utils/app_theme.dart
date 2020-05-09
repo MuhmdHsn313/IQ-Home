@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 class AppTheme {
   static const Color primaryColor = Color(0xff55AA88);
   static const Color highlightColor = Color(0xff88BBAA);
-  static const Color textColor = Color(0xff292929);
+  static const Color textColor1 = Color(0xffB4B4B4);
+  static const Color textColor2 = Color(0xff727272);
   static const Color backgroundColor = Color(0xffF5F5F5);
+  static const Color cardColor = Colors.white;
   static const Color articleBackgroundColor = Color(0xff8D8D8D);
   static const Color unselectedColor = Color(0xff727272);
 
@@ -17,5 +19,23 @@ class AppTheme {
     indicatorColor: primaryColor,
     accentColor: highlightColor,
     disabledColor: unselectedColor,
+    cardColor: cardColor,
+    textTheme: TextTheme(
+      headline6: TextStyle(
+        fontSize: 15,
+        color: primaryColor,
+        fontWeight: FontWeight.bold,
+      ),
+      subtitle1: TextStyle(
+        fontSize: 17,
+        color: primaryColor,
+        fontWeight: FontWeight.normal,
+      ),
+      subtitle2: TextStyle(
+        fontSize: 13,
+        color: textColor1,
+        fontWeight: FontWeight.normal,
+      ),
+    ),
   );
 }
