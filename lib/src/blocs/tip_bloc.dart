@@ -6,11 +6,11 @@ import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 
 
-class ArticleBloc extends Bloc<TipEvent, TipState> {
+class TipBloc extends Bloc<TipEvent, TipState> {
 
   TipRepository repository;
 
-  ArticleBloc({@required this.repository});
+  TipBloc({@required this.repository});
 
   @override
   // TODO: implement initialState
