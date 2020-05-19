@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
+          
           title: Text('الرئيسية'),
           centerTitle: true,
           leading: IconButton(
