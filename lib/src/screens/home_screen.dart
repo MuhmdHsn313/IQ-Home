@@ -58,7 +58,7 @@ class HomeScreen extends StatelessWidget {
                     text: 'العراق',
                   ),
                   Tab(
-                    text: 'العالم',
+                    text: 'عالمياً',
                   ),
                 ],
               ),
@@ -75,7 +75,7 @@ class HomeScreen extends StatelessWidget {
               child: ListView.separated(
                 itemBuilder: (context, index) => NewsCard(),
                 separatorBuilder: (context, index) => SizedBox(
-                  height: 5,
+                  height: 15,
                 ),
                 itemCount: 5,
                 padding: EdgeInsets.all(8.0),

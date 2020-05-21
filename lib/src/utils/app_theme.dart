@@ -25,11 +25,12 @@ class AppTheme {
     primaryTextTheme: TextTheme(
         bodyText1: TextStyle(
           color: primaryColor,
+          fontSize: 20,
         ),
     ),
     textTheme: TextTheme(
       headline6: TextStyle(
-        fontSize: 15,
+        fontSize: 20,
         color: primaryColor,
         fontWeight: FontWeight.bold,
       ),
@@ -41,6 +42,7 @@ class AppTheme {
       subtitle2: TextStyle(
         fontSize: 13,
         color: textColor1,
+        height: 1.5,
         fontWeight: FontWeight.normal,
       ),
     ),
