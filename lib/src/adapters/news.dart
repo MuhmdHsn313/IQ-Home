@@ -24,6 +24,7 @@ class NewsAdapter extends TypeAdapter<News> {
       sections: (fields[7] as List)?.cast<Section>(),
       createDateTime: fields[8] as DateTime,
       lastChangedDateTime: fields[9] as DateTime,
+      seen: fields[10] as bool,
     );
   }
 
@@ -50,7 +51,9 @@ class NewsAdapter extends TypeAdapter<News> {
       ..writeByte(8)
       ..write(obj.createDateTime)
       ..writeByte(9)
-      ..write(obj.lastChangedDateTime);
+      ..write(obj.lastChangedDateTime)
+      ..writeByte(10)
+      ..write(obj.seen);
   }
 
   @override

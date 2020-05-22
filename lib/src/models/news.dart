@@ -30,6 +30,8 @@ class News extends Equatable {
   final DateTime createDateTime;
   @HiveField(9)
   final DateTime lastChangedDateTime;
+  @HiveField(10)
+  final bool seen;
 
   const News({
     @required this.id,
@@ -42,9 +44,11 @@ class News extends Equatable {
     @required this.sections,
     @required this.createDateTime,
     @required this.lastChangedDateTime,
+    this.seen: false,
   })  : assert(id != null),
         assert(type != null),
         assert(body != null),
+        assert(seen != null),
         assert(cover != null),
         assert(title != null),
         assert(status != null),
@@ -80,11 +84,40 @@ class News extends Equatable {
     );
   }
 
+  News copyWith({
+    int id,
+    String title,
+    String type,
+    String body,
+    String cover,
+    NewsStatus status,
+    Source source,
+    List<Section> sections,
+    DateTime createDateTime,
+    DateTime lastChangedDataTime,
+    bool seen,
+  }) {
+    return News(
+      id: id ?? this.id,
+      type: type ?? this.type,
+      body: body ?? this.body,
+      seen: seen ?? this.seen,
+      cover: cover ?? this.cover,
+      title: title ?? this.title,
+      status: status ?? this.status,
+      source: source ?? this.source,
+      sections: sections ?? this.sections,
+      createDateTime: createDateTime ?? this.createDateTime,
+      lastChangedDateTime: lastChangedDataTime ?? this.lastChangedDateTime,
+    );
+  }
+
   @override
   List<Object> get props => [
         id,
         type,
         body,
+        seen,
         cover,
         title,
         status,
