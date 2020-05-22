@@ -1,3 +1,4 @@
+import 'package:hive/hive.dart';
 import 'package:iqhome/src/utils/public_type.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
@@ -5,17 +6,30 @@ import 'package:equatable/equatable.dart';
 import 'section.dart';
 import 'source.dart';
 
+part '../adapters/news.dart';
+
+@HiveType(typeId: 0)
 class News extends Equatable {
+  @HiveField(0)
   final int id;
-  final DateTime lastChangedDateTime;
-  final DateTime createDateTime;
-  final String type;
-  final String title;
+  @HiveField(1)
   final String body;
+  @HiveField(2)
+  final String type;
+  @HiveField(3)
+  final String title;
+  @HiveField(4)
   final String cover;
-  final NewsStatus status;
-  final List<Section> sections;
+  @HiveField(5)
   final Source source;
+  @HiveField(6)
+  final NewsStatus status;
+  @HiveField(7)
+  final List<Section> sections;
+  @HiveField(8)
+  final DateTime createDateTime;
+  @HiveField(9)
+  final DateTime lastChangedDateTime;
 
   const News({
     @required this.id,

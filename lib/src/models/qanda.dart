@@ -1,15 +1,24 @@
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 import 'dart:convert';
 import 'package:equatable/equatable.dart';
 
-class QandA extends Equatable {
-  final int id;
-  final String question;
-  final String logo;
-  final String shortAnswer;
-  final String answer;
+part '../adapters/qanda.dart';
 
-  List<QandA> qanda ;
+@HiveType(typeId: 3)
+class QandA extends Equatable {
+  @HiveField(0)
+  final int id;
+  @HiveField(1)
+  final String question;
+  @HiveField(2)
+  final String logo;
+  @HiveField(3)
+  final String answer;
+  @HiveField(4)
+  final String shortAnswer;
+  @HiveField(5)
+  List<QandA> qanda;
 
   QandA({
     @required this.id,
@@ -20,7 +29,7 @@ class QandA extends Equatable {
   });
 
   QandA copyWith({
-    int id ,
+    int id,
     String question,
     String logo,
     String shortAnswer,
@@ -36,6 +45,7 @@ class QandA extends Equatable {
 
   @override
   List<Object> get props => [id, question, logo, shortAnswer, answer];
+
   factory QandA.fromRawJson(String str) => QandA.fromJson(json.decode(str));
 
   String toRawJson() => json.encode(toJson());

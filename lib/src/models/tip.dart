@@ -2,18 +2,27 @@
 //
 //     final tip = tipFromJson(jsonString);
 
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 import 'dart:convert';
 
-class Tip extends Equatable {
-  final int id ;
-  final String title;
-  final String cover;
-  final String details;
-  final List<String> links;
+part '../adapters/tip.dart';
 
-  List<Tip> tips ;
+@HiveType(typeId: 4)
+class Tip extends Equatable {
+  @HiveField(0)
+  final int id;
+  @HiveField(1)
+  final String title;
+  @HiveField(2)
+  final String cover;
+  @HiveField(3)
+  final String details;
+  @HiveField(4)
+  final List<String> links;
+  @HiveField(5)
+  List<Tip> tips;
 
   Tip({
     @required this.id,
@@ -24,14 +33,14 @@ class Tip extends Equatable {
   });
 
   Tip copyWith({
-    int id ,
+    int id,
     String title,
     String cover,
     String details,
     List<String> links,
   }) =>
       Tip(
-        id: id??this.id,
+        id: id ?? this.id,
         title: title ?? this.title,
         cover: cover ?? this.cover,
         details: details ?? this.details,
@@ -54,7 +63,7 @@ class Tip extends Equatable {
       );
 
   Map<String, dynamic> toJson() => {
-        "id":id,
+        "id": id,
         "title": title,
         "cover": cover,
         "details": details,

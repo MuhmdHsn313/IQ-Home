@@ -1,15 +1,28 @@
+import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
 
+part '../adapters/source.dart';
+
+@HiveType(typeId: 2)
 class Source extends Equatable {
+  @HiveField(0)
   final int id;
+  @HiveField(1)
   final String name;
+  @HiveField(2)
   final String logo;
+  @HiveField(3)
   final String webUrl;
+  @HiveField(4)
   final String twitterUrl;
+  @HiveField(5)
   final String telegramUrl;
+  @HiveField(6)
   final String facebookUrl;
+  @HiveField(7)
   final DateTime createDateTime;
+  @HiveField(8)
   final DateTime lastChangedDateTime;
 
   Source({
