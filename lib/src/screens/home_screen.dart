@@ -164,9 +164,17 @@ class _HomeSection extends StatelessWidget {
       builder: (context, state) {
         if (state is NewsSuccessfulLoading) {
           List<News> localNews =
-              state.news.where((news) => news.type == 'LOCAL').toList();
+              state.news.where((news) => news.type == 'LOCAL').toList()
+                ..sort(
+                  (c, n) =>
+                      n.lastChangedDateTime.compareTo(c.lastChangedDateTime),
+                );
           List<News> internationalNews =
-              state.news.where((news) => news.type == 'INTERNATIONAL').toList();
+              state.news.where((news) => news.type == 'INTERNATIONAL').toList()
+                ..sort(
+                  (c, n) =>
+                      n.lastChangedDateTime.compareTo(c.lastChangedDateTime),
+                );
 
           return TabBarView(
             children: [

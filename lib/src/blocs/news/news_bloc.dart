@@ -49,7 +49,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           if (newsEvent.id == seenNews.id) return seenNews;
           return newsEvent;
         },
-      );
+      ).toList();
       yield NewsSuccessfulLoading(news);
     }
   }
