@@ -1,7 +1,17 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:iqhome/src/models/news.dart';
+import 'package:iqhome/src/utils/string_time_generator.dart';
 
 class NewsCard extends StatelessWidget {
+  final News news;
+
+  const NewsCard({
+    Key key,
+    @required this.news,
+  })  : assert(news != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -30,17 +40,16 @@ class NewsCard extends StatelessWidget {
                   Row(
                     children: [
                       CircleAvatar(
-                        /// TODO: add publisher photo.
                         radius: 25.0,
                         backgroundImage: CachedNetworkImageProvider(
-                          'https://arabia.as.com/uploads/images/2020/05/05/115185.jpg',
+                          news.source.logo,
                         ),
                       ),
                       Expanded(
                         child: Padding(
                           padding: const EdgeInsets.symmetric(horizontal: 8.0),
                           child: Text(
-                            'وزارة الصحة العراقية',
+                            news.source.name,
                             style: Theme.of(context)
                                 .textTheme
                                 .subtitle1
@@ -51,19 +60,21 @@ class NewsCard extends StatelessWidget {
                       Column(
                         mainAxisSize: MainAxisSize.min,
                         crossAxisAlignment: CrossAxisAlignment.end,
-                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisAlignment: MainAxisAlignment.start,
                         children: [
                           Container(
                             height: 10,
                             width: 10,
                             margin: EdgeInsets.all(2.5),
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.circular(50),
-                            ),
+                            decoration: news.seen
+                                ? null
+                                : BoxDecoration(
+                                    color: Theme.of(context).primaryColor,
+                                    borderRadius: BorderRadius.circular(50),
+                                  ),
                           ),
                           Text(
-                            'منذ ساعة',
+                            StringTimeGenerator.get(news.lastChangedDateTime),
                             style: Theme.of(context)
                                 .textTheme
                                 .subtitle2
@@ -74,14 +85,14 @@ class NewsCard extends StatelessWidget {
                     ],
                   ),
                   Text(
-                    'الموقف الوبائي اليومي للأصابات المسجلة لفايروس كورونا المستجد في العراق',
+                    news.title,
                     style: Theme.of(context)
                         .textTheme
                         .headline6
                         .copyWith(fontSize: 15),
                   ),
                   Text(
-                    'تم فحص (٢٤٧٧) نموذج في كافة المختبرات المختصة في العراق وبذلك يكون المجموع الكلي للنماذج المفحوصة منذ بداية تسجيل المرض في العراق (٥١٧٣٧).',
+                    news.body,
                     maxLines: 3,
                     overflow: TextOverflow.clip,
                     style: Theme.of(context).textTheme.subtitle2,
@@ -98,9 +109,7 @@ class NewsCard extends StatelessWidget {
                   bottom: Radius.circular(25),
                 ),
                 image: DecorationImage(
-                  /// TODO: add news photo
-                  image: CachedNetworkImageProvider(
-                      'https://arabia.as.com/uploads/images/2020/05/05/115185.jpg'),
+                  image: CachedNetworkImageProvider(news.cover),
                   fit: BoxFit.cover,
                 ),
               ),

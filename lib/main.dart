@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive/hive.dart';
-import 'package:path_provider/path_provider.dart';
+import 'package:path_provider/path_provider.dart' as path;
 
 import 'src/app.dart';
 import 'src/models/tip.dart';
@@ -10,7 +10,8 @@ import 'src/models/section.dart';
 import 'src/models/source.dart';
 
 void main() async {
-  final currentDir = await getApplicationDocumentsDirectory();
+  WidgetsFlutterBinding.ensureInitialized();
+  final currentDir = await path.getApplicationDocumentsDirectory();
   Hive.init(currentDir.path);
   Hive.registerAdapter(NewsAdapter());
   Hive.registerAdapter(TipAdapter());

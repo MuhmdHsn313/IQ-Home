@@ -50,8 +50,8 @@ class Source extends Equatable {
       twitterUrl: data['twitterUrl'],
       telegramUrl: data['telegramUrl'],
       facebookUrl: data['facebookUrl'],
-      createDateTime: data['createDateTime'],
-      lastChangedDateTime: data['lastChangedDateTime'],
+      createDateTime: DateTime.parse(data['createDateTime']),
+      lastChangedDateTime: DateTime.parse(data['lastChangedDateTime']),
     );
   }
 
