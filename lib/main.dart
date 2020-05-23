@@ -8,6 +8,7 @@ import 'src/models/qanda.dart';
 import 'src/models/news.dart';
 import 'src/models/section.dart';
 import 'src/models/source.dart';
+import 'src/utils/public_type.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -18,5 +19,7 @@ void main() async {
   Hive.registerAdapter(QandAAdapter());
   Hive.registerAdapter(SectionAdapter());
   Hive.registerAdapter(SourceAdapter());
+  Hive.registerAdapter(AppFontSizeAdapter());
+  Hive.registerAdapter(NewsStatusAdapter());
   runApp(IQHome());
 }
