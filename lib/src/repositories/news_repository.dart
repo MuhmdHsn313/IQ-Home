@@ -16,7 +16,7 @@ class NewsRepository {
       : _client = new Client(),
         _connectionChecker = DataConnectionChecker();
 
-  Future<void> initialBox() async {
+  Future<void> _initialBox() async {
     if (Hive.isBoxOpen('News'))
       _newsBox = Hive.box<News>('News');
     else
@@ -29,7 +29,7 @@ class NewsRepository {
   }
 
   Stream<List<News>> fetchNews([int index, int fetch]) async* {
-    await initialBox();
+    await _initialBox();
 
     if (await _connectionChecker.hasConnection) {
       Response response = await _client.get(
@@ -50,12 +50,17 @@ class NewsRepository {
     }
   }
 
-  Future<void> updateSeen(int id) {
-    return _newsBox.put(
-      id,
-      _newsBox.get(id).copyWith(seen: true),
+  Future<void> updateSeen(News news) async {
+    await _initialBox();
+    return await _newsBox.put(
+      news.id,
+      news,
     );
   }
 
   Stream<BoxEvent> get listener => _newsBox.watch();
+
+  void dispose() {
+    _newsBox.close();
+  }
 }
