@@ -1,12 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-
-abstract class TipEvent extends Equatable {}
-
-
-class FetchTipsEvent extends TipEvent {
+abstract class TipEvent extends Equatable {
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-
+  List<Object> get props => [];
 }
+
+class FetchTipsEvent extends TipEvent {}

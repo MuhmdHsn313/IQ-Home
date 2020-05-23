@@ -1,11 +1,16 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:iqhome/src/models/tip.dart';
+import 'package:iqhome/src/utils/api_reference.dart';
 
 class TipApiClient {
-  Future<List<Tip>> fetchTip() async {
-    final tipUrl = 'https://cfi-covid19.herokuapp.com/api/tip/';
-    final tipResponse = await http.get(tipUrl);
+  Future<List<Tip>> fetchTip([int index, int fetch]) async {
+    final tipResponse = await http.get(
+      ApiReference.tips(
+        index ?? 0,
+        fetch ?? 10,
+      ),
+    );
 
     if (tipResponse.statusCode != 200) {
       throw Exception('error getting tip  from url ');

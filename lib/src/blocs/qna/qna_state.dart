@@ -2,46 +2,31 @@ import 'package:equatable/equatable.dart';
 import 'package:iqhome/src/models/qanda.dart';
 import 'package:meta/meta.dart';
 
+abstract class QnAState extends Equatable {
+  const QnAState();
 
-abstract class QnAState extends Equatable {}
-
-
-class QnAInitialState extends QnAState {
   @override
-  // TODO: implement props
   List<Object> get props => [];
 }
 
+class QnAInitialState extends QnAState {}
 
-
-class QnALoadingState extends QnAState {
-  @override
-  // TODO: implement props
-  List<Object> get props => [];
-}
-
-
+class QnALoadingState extends QnAState {}
 
 class QnALoadedState extends QnAState {
+  final List<QandA> qna;
 
-  List<QandA> qna;
-
-  QnALoadedState({@required this.qna});
+  const QnALoadedState({@required this.qna}) : assert(qna != null);
 
   @override
-  // TODO: implement props
   List<Object> get props => [qna];
 }
 
-
-
 class QnAErrorState extends QnAState {
+  final String message;
 
-  String message;
-
-  QnAErrorState({@required this.message});
+  const QnAErrorState({@required this.message}) : assert(message != null);
 
   @override
-  // TODO: implement props
   List<Object> get props => [message];
 }

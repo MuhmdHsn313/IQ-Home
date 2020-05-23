@@ -1,12 +1,8 @@
 import 'package:equatable/equatable.dart';
 
-
-abstract class QnAEvent extends Equatable {}
-
-
-class FetchQnAEvent extends QnAEvent {
+abstract class QnAEvent extends Equatable {
   @override
-  // TODO: implement props
-  List<Object> get props => null;
-
+  List<Object> get props => [];
 }
+
+class FetchQnAEvent extends QnAEvent {}

@@ -1,11 +1,11 @@
 import 'dart:convert';
 import 'package:http/http.dart' as http;
 import 'package:iqhome/src/models/qanda.dart';
+import 'package:iqhome/src/utils/api_reference.dart';
 
 class QandAApiClient {
   Future<List<QandA>> fetchQna() async {
-    final tipUrl = 'https://cfi-covid19.herokuapp.com/api/qna/';
-    final tipResponse = await http.get(tipUrl);
+    final tipResponse = await http.get(ApiReference.qna);
 
     if (tipResponse.statusCode != 200) {
       throw Exception('error getting tip  from url ');
