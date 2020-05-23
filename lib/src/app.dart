@@ -5,6 +5,7 @@ import 'package:iqhome/src/blocs/news/bloc.dart';
 import 'package:iqhome/src/screens/home_screen.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
 
+
 class IQHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

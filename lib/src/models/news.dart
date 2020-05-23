@@ -48,7 +48,7 @@ class News extends Equatable {
   })  : assert(id != null),
         assert(type != null),
         assert(body != null),
-        assert(seen != null),
+        // assert(seen != null), TODO: check this bug.
         assert(cover != null),
         assert(title != null),
         assert(status != null),

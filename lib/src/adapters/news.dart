@@ -31,7 +31,7 @@ class NewsAdapter extends TypeAdapter<News> {
   @override
   void write(BinaryWriter writer, News obj) {
     writer
-      ..writeByte(10)
+      ..writeByte(11)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
