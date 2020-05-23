@@ -19,13 +19,13 @@ class TipAdapter extends TypeAdapter<Tip> {
       cover: fields[2] as String,
       details: fields[3] as String,
       links: (fields[4] as List)?.cast<String>(),
-    )..tips = (fields[5] as List)?.cast<Tip>();
+    );
   }
 
   @override
   void write(BinaryWriter writer, Tip obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,9 +35,7 @@ class TipAdapter extends TypeAdapter<Tip> {
       ..writeByte(3)
       ..write(obj.details)
       ..writeByte(4)
-      ..write(obj.links)
-      ..writeByte(5)
-      ..write(obj.tips);
+      ..write(obj.links);
   }
 
   @override

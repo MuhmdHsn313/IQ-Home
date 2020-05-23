@@ -5,9 +5,17 @@ class StringTimeGenerator {
     final DateTime now = DateTime.now();
     String currentTime;
 
-    if (now.minute == date.minute)
+    if (now.minute == date.minute &&
+        date.hour == now.hour &&
+        now.day == date.day &&
+        now.month == date.month &&
+        now.year == date.year)
       currentTime = 'الان';
-    else if (date.minute < now.minute && date.hour == now.hour)
+    else if (date.minute < now.minute &&
+        date.hour == now.hour &&
+        now.day == date.day &&
+        now.month == date.month &&
+        now.year == date.year)
       currentTime = 'منذ ${now.month - date.minute} دقائق';
     else if (now.hour > date.hour &&
         now.day == date.day &&

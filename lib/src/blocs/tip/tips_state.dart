@@ -9,8 +9,6 @@ abstract class TipState extends Equatable {
   List<Object> get props => [];
 }
 
-class TipInitialState extends TipState {}
-
 class TipLoadingState extends TipState {}
 
 class TipLoadedState extends TipState {

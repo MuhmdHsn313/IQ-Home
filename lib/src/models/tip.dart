@@ -21,8 +21,6 @@ class Tip extends Equatable {
   final String details;
   @HiveField(4)
   final List<String> links;
-  @HiveField(5)
-  List<Tip> tips;
 
   Tip({
     @required this.id,
@@ -48,7 +46,7 @@ class Tip extends Equatable {
       );
 
   @override
-  List<Object> get props => [title, cover, details, links];
+  List<Object> get props => [title, cover, details]..addAll(links);
 
   factory Tip.fromRawJson(String str) => Tip.fromJson(json.decode(str));
 
@@ -59,7 +57,12 @@ class Tip extends Equatable {
         title: json["title"],
         cover: json["cover"],
         details: json["details"],
-        links: List<String>.from(json["links"].map((x) => x)),
+        links: json['links'] == null
+            ? []
+            : List<String>.generate(
+                json['links'].length,
+                (index) => json['links'][index],
+              ),
       );
 
   Map<String, dynamic> toJson() => {

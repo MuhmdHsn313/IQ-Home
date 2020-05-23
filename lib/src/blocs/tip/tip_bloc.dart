@@ -1,22 +1,19 @@
 import 'package:iqhome/src/models/tip.dart';
 import 'package:iqhome/src/repositories/repositories.dart';
-import 'package:meta/meta.dart';
 import 'package:bloc/bloc.dart';
 import './bloc.dart';
 
 class TipBloc extends Bloc<TipEvent, TipState> {
-  TipRepository repository;
+  final TipRepository repository;
 
-  TipBloc({@required this.repository});
+  TipBloc() : repository = new TipRepository();
 
   @override
-  // TODO: implement initialState
-  TipState get initialState => TipInitialState();
+  TipState get initialState => TipLoadingState();
 
   @override
   Stream<TipState> mapEventToState(TipEvent event) async* {
     if (event is FetchTipsEvent) {
-      yield TipLoadingState();
       try {
         List<Tip> tips = await repository.getTip();
         yield TipLoadedState(tips: tips);

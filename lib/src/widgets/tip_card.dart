@@ -1,6 +1,14 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:iqhome/src/models/tip.dart';
 
 class TipCard extends StatelessWidget {
+  final Tip tip;
+
+  const TipCard({Key key, @required this.tip})
+      : assert(tip != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -26,7 +34,7 @@ class TipCard extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                 image: DecorationImage(
-                  image: AssetImage('assets/images/q&a.jpg'),
+                  image: CachedNetworkImageProvider(tip.cover),
                   fit: BoxFit.cover,
                 ),
               ),
@@ -36,7 +44,7 @@ class TipCard extends StatelessWidget {
             flex: 1,
             child: Center(
               child: Text(
-                "سؤال و جواب",
+                tip.title,
                 style: TextStyle(
                   fontSize: 18,
                   fontWeight: FontWeight.bold,

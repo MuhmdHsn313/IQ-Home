@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:iqhome/src/blocs/news/bloc.dart';
+import 'package:iqhome/src/blocs/tip/bloc.dart';
+import 'package:iqhome/src/models/news.dart';
 import 'package:iqhome/src/screens/emergency_screen.dart';
 import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
@@ -160,18 +162,41 @@ class _HomeSection extends StatelessWidget {
     return BlocBuilder<NewsBloc, NewsState>(
       bloc: BlocProvider.of<NewsBloc>(context),
       builder: (context, state) {
-        if (state is NewsSuccessfulLoading)
-          return ListView.separated(
-            itemBuilder: (context, index) => NewsCard(
-              news: state.news[index],
-            ),
-            separatorBuilder: (context, index) => SizedBox(
-              height: 15,
-            ),
-            itemCount: state.news.length,
-            padding: EdgeInsets.all(8.0),
-            physics: BouncingScrollPhysics(),
+        if (state is NewsSuccessfulLoading) {
+          List<News> localNews =
+              state.news.where((news) => news.type == 'LOCAL').toList();
+          List<News> internationalNews =
+              state.news.where((news) => news.type == 'INTERNATIONAL').toList();
+
+          return TabBarView(
+            children: [
+              ListView.separated(
+                itemBuilder: (context, index) => NewsCard(
+                  news: localNews[index],
+                ),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 15,
+                ),
+                itemCount: localNews.length,
+                padding: EdgeInsets.all(8.0),
+                physics: localNews.length == 1 ? null : BouncingScrollPhysics(),
+              ),
+              ListView.separated(
+                itemBuilder: (context, index) => NewsCard(
+                  news: internationalNews[index],
+                ),
+                separatorBuilder: (context, index) => SizedBox(
+                  height: 15,
+                ),
+                itemCount: internationalNews.length,
+                padding: EdgeInsets.all(8.0),
+                physics: internationalNews.length == 1
+                    ? null
+                    : BouncingScrollPhysics(),
+              )
+            ],
           );
+        }
 
         if (state is NewsLoadingError)
           return Column(
@@ -202,30 +227,61 @@ class _HomeSection extends StatelessWidget {
 class _InformationSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ListView(
-      physics: BouncingScrollPhysics(),
-      children: <Widget>[
-        Container(
-          height: 226,
-          width: MediaQuery.of(context).size.width,
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              image: AssetImage("assets/images/who-cover.png"),
-              fit: BoxFit.cover,
-            ),
-          ),
-        ),
-        SizedBox(
-          height: 35,
-        ),
-        ...List.generate(
-          5 * 2,
-          (index) {
-            if (index % 2 == 0) return TipCard();
-            return SizedBox(height: 15);
-          },
-        ),
-      ],
+    return BlocBuilder<TipBloc, TipState>(
+      bloc: BlocProvider.of<TipBloc>(context),
+      builder: (context, state) {
+        if (state is TipLoadedState)
+          return ListView(
+            physics: state.tips.length == 1 ? null : BouncingScrollPhysics(),
+            children: <Widget>[
+              Container(
+                height: 226,
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage("assets/images/who-cover.png"),
+                    fit: BoxFit.cover,
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 35,
+              ),
+              ...List.generate(
+                state.tips.length * 2,
+                (index) {
+                  if (index % 2 == 0)
+                    return TipCard(
+                      tip: state.tips[index - (index ~/ 2)],
+                    );
+                  return SizedBox(height: 15);
+                },
+              ),
+            ],
+          );
+
+        if (state is TipErrorState)
+          return Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Icon(
+                Icons.sentiment_dissatisfied,
+                size: 75,
+                color: Theme.of(context).disabledColor,
+              ),
+              Text(
+                'Error: ${state.message}',
+                style: Theme.of(context).textTheme.subtitle2.copyWith(
+                      color: Theme.of(context).disabledColor,
+                    ),
+              ),
+            ],
+          );
+
+        return SpinKitCircle(
+          color: Theme.of(context).primaryColor,
+        );
+      },
     );
   }
 }

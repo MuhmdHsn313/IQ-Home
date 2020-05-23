@@ -1,14 +1,13 @@
 import 'dart:async';
 import 'package:iqhome/src/models/tip.dart';
 import 'package:iqhome/src/repositories/tip_client.dart';
-import 'package:meta/meta.dart';
 
 class TipRepository {
   final TipApiClient tipApiClient;
 
-  TipRepository({@required this.tipApiClient}) : assert(tipApiClient != null);
+  TipRepository() : tipApiClient = new TipApiClient();
 
   Future<List<Tip>> getTip() async {
-    return tipApiClient.fetchTip();
+    return await tipApiClient.fetchTip();
   }
 }
