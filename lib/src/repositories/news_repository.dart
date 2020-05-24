@@ -33,20 +33,61 @@ class NewsRepository {
 
     if (await _connectionChecker.hasConnection) {
       Response response = await _client.get(
-        ApiReference.home(index ?? 0, fetch ?? 10),
+        ApiReference.home(index ?? 0, fetch ?? 20),
       );
       final List list = json.decode(response.body);
       final newsList = List<News>.generate(
         list.length,
         (index) => News.fromJson(list[index]),
       );
-      yield newsList;
-      await _newsBox.clear();
-      for (final news in newsList) {
-        await _newsBox.put(news.id, news);
+      if (newsList.length > _newsBox.values.length) {
+        for (int i = 0; i < newsList.length; i++) {
+          if (i < _newsBox.values.length) {
+            if (_newsBox.values.elementAt(i).id == newsList[i].id) {
+              await _newsBox.put(
+                newsList[i].id,
+                newsList[i].copyWith(
+                  seen: _newsBox.values.elementAt(i).seen,
+                ),
+              );
+            }
+          } else {
+            await _newsBox.put(
+              newsList[i].id,
+              newsList[i],
+            );
+          }
+        }
+      } else if (newsList.length < _newsBox.values.length) {
+        for (int i = 0; i < _newsBox.values.length; i++) {
+          if (i < newsList.length) {
+            if (_newsBox.values.elementAt(i).id == newsList[i].id) {
+              await _newsBox.put(
+                newsList[i].id,
+                newsList[i].copyWith(
+                  seen: _newsBox.values.elementAt(i).seen,
+                ),
+              );
+            }
+          } else {
+            await _newsBox.delete(_newsBox.keyAt(i));
+          }
+        }
+      } else {
+        for (int i = 0; i < newsList.length; i++) {
+          if (_newsBox.values.elementAt(i).id == newsList[i].id) {
+            await _newsBox.put(
+              newsList[i].id,
+              newsList[i].copyWith(
+                seen: _newsBox.values.elementAt(i).seen,
+              ),
+            );
+          }
+        }
       }
+      yield _newsBox.values.toList();
     } else {
-      yield _newsBox.values;
+      yield _newsBox.values.toList();
     }
   }
 
