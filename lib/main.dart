@@ -8,6 +8,7 @@ import 'src/models/qanda.dart';
 import 'src/models/news.dart';
 import 'src/models/section.dart';
 import 'src/models/source.dart';
+import 'src/models/emergency.dart';
 import 'src/utils/public_type.dart';
 
 void main() async {
@@ -21,5 +22,6 @@ void main() async {
   Hive.registerAdapter(SourceAdapter());
   Hive.registerAdapter(AppFontSizeAdapter());
   Hive.registerAdapter(NewsStatusAdapter());
+  Hive.registerAdapter(EmergencyAdapter());
   runApp(IQHome());
 }
