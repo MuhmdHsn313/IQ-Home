@@ -28,7 +28,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
 
   Stream<NewsState> _fetchNewsToState() async* {
     try {
-      _newsRepository.fetchNews().listen(
+      _newsRepository.streamFetch().listen(
             (news) => add(
               NewFetchedNews(news),
             ),

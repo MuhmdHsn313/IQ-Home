@@ -19,13 +19,13 @@ class QandAAdapter extends TypeAdapter<QandA> {
       logo: fields[2] as String,
       shortAnswer: fields[4] as String,
       answer: fields[3] as String,
-    )..qanda = (fields[5] as List)?.cast<QandA>();
+    );
   }
 
   @override
   void write(BinaryWriter writer, QandA obj) {
     writer
-      ..writeByte(6)
+      ..writeByte(5)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -35,9 +35,7 @@ class QandAAdapter extends TypeAdapter<QandA> {
       ..writeByte(3)
       ..write(obj.answer)
       ..writeByte(4)
-      ..write(obj.shortAnswer)
-      ..writeByte(5)
-      ..write(obj.qanda);
+      ..write(obj.shortAnswer);
   }
 
   @override

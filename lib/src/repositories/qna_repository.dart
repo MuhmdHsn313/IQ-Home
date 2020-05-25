@@ -1,14 +1,34 @@
 import 'dart:async';
+import 'dart:convert';
 import 'package:iqhome/src/models/qanda.dart';
-import 'package:iqhome/src/repositories/qa_client.dart';
-import 'package:meta/meta.dart';
+import 'package:iqhome/src/utils/api_reference.dart';
 
-class QandARepository {
-  final QandAApiClient qnaApiClient;
+import 'home_repository.dart';
 
-  QandARepository({@required this.qnaApiClient}) : assert(qnaApiClient != null);
+class QandARepository extends HomeRepository<QandA> {
+  @override
+  Future<List<QandA>> fetch() async {
+    await super.initialBox();
+    if (await connectionChecker.hasConnection) {
+      final qnaResponse = await client.get(
+        ApiReference.qna,
+      );
 
-  Future<List<QandA>> getqna() async {
-    return qnaApiClient.fetchQna();
+      if (qnaResponse.statusCode != 200) throw Exception(qnaResponse.body);
+
+      final List data = jsonDecode(qnaResponse.body);
+      final qnas = List<QandA>.generate(
+        data.length,
+        (index) => QandA.fromJson(data[index]),
+      );
+
+      for (final qna in qnas) {
+        await box.put(qna.id, qna);
+      }
+
+      return qnas;
+    } else {
+      return box.values.toList();
+    }
   }
 }

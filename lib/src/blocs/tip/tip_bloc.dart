@@ -15,7 +15,7 @@ class TipBloc extends Bloc<TipEvent, TipState> {
   Stream<TipState> mapEventToState(TipEvent event) async* {
     if (event is FetchTipsEvent) {
       try {
-        List<Tip> tips = await repository.getTip();
+        List<Tip> tips = await repository.fetch();
         yield TipLoadedState(tips: tips);
       } catch (e) {
         yield TipErrorState(message: e.toString());

@@ -17,8 +17,6 @@ class QandA extends Equatable {
   final String answer;
   @HiveField(4)
   final String shortAnswer;
-  @HiveField(5)
-  List<QandA> qanda;
 
   QandA({
     @required this.id,

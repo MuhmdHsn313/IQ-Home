@@ -17,7 +17,7 @@ class QnABloc extends Bloc<QnAEvent, QnAState> {
     if (event is FetchQnAEvent) {
       yield QnALoadingState();
       try {
-        List<QandA> qna = await repository.getqna();
+        final List<QandA> qna = await repository.fetch();
         yield QnALoadedState(qna: qna);
       } catch (e) {
         yield QnAErrorState(message: e.toString());
