@@ -48,16 +48,16 @@ class NewsCard extends StatelessWidget {
           children: [
             Expanded(
               flex: 7,
-              child: Hero(
-                tag: news.id,
-                child: Container(
-                  padding: const EdgeInsets.symmetric(
-                      horizontal: 20.0, vertical: 10),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Row(
+              child: Container(
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Hero(
+                      tag: '${news.id}-source',
+                      child: Row(
                         children: [
                           CircleAvatar(
                             radius: 25.0,
@@ -106,21 +106,27 @@ class NewsCard extends StatelessWidget {
                           ),
                         ],
                       ),
-                      Text(
+                    ),
+                    Hero(
+                      tag: '${news.id}-title',
+                      child: Text(
                         news.title,
                         style: Theme.of(context)
                             .textTheme
                             .headline6
                             .copyWith(fontSize: 15),
                       ),
-                      Text(
+                    ),
+                    Hero(
+                      tag: '${news.id}-body',
+                      child: Text(
                         news.body,
                         maxLines: 3,
                         overflow: TextOverflow.clip,
                         style: Theme.of(context).textTheme.subtitle2,
                       ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),

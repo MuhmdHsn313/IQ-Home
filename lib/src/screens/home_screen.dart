@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iqhome/src/blocs/news/bloc.dart';
 import 'package:iqhome/src/blocs/tip/bloc.dart';
 import 'package:iqhome/src/models/news.dart';
@@ -255,6 +256,22 @@ class _InformationSection extends StatelessWidget {
               SizedBox(
                 height: 35,
               ),
+              _buildInfoCard(
+                context,
+                title: 'سؤال وجواب',
+                svgPath: 'assets/images/q&a.svg',
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              _buildInfoCard(
+                context,
+                title: 'معلومات عن الكمامة',
+                svgPath: 'assets/images/security.svg',
+              ),
+              SizedBox(
+                height: 15,
+              ),
               ...List.generate(
                 state.tips.length * 2,
                 (index) {
@@ -290,6 +307,64 @@ class _InformationSection extends StatelessWidget {
           color: Theme.of(context).primaryColor,
         );
       },
+    );
+  }
+
+  Widget _buildInfoCard(
+    BuildContext context, {
+    @required String title,
+    @required String svgPath,
+    VoidCallback onTap,
+  }) {
+    return Container(
+      height: 185,
+      width: 380,
+      margin: EdgeInsets.symmetric(horizontal: 16.0),
+      decoration: BoxDecoration(
+        color: Theme.of(context).cardColor,
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withOpacity(0.16),
+            blurRadius: 10,
+            offset: Offset(0, 0),
+          )
+        ],
+        borderRadius: BorderRadius.circular(25),
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
+          children: [
+            Expanded(
+              flex: 4,
+              child: Container(
+                padding: EdgeInsets.all(8.0),
+                width: MediaQuery.of(context).size.width,
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+                  color: Theme.of(context).highlightColor,
+                ),
+                child: SvgPicture.asset(
+                  svgPath,
+                ),
+              ),
+            ),
+            Expanded(
+              flex: 1,
+              child: Center(
+                child: Text(
+                  title,
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                    color: Theme.of(context).primaryColor,
+                  ),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

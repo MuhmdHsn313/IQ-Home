@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:iqhome/src/models/news.dart';
 import 'package:iqhome/src/models/section.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
@@ -17,15 +16,10 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(
-      SystemUiOverlayStyle(statusBarColor: Theme.of(context).primaryColor),
-    );
     return Scaffold(
       appBar: PreferredSize(
         child: SafeArea(
-          child: Hero(
-            tag: news.id,
-            child: Container(
+          child: Container(
               height: 110,
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
@@ -34,46 +28,51 @@ class NewsScreen extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 25.0,
-                        backgroundImage: CachedNetworkImageProvider(
-                          news.source.logo,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            news.source.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle1
-                                .copyWith(fontSize: 11),
+                  Hero(
+                    tag: '${news.id}-source',
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 25.0,
+                          backgroundImage: CachedNetworkImageProvider(
+                            news.source.logo,
                           ),
                         ),
-                      ),
-                      Text(
-                        StringTimeGenerator.get(news.lastChangedDateTime),
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .copyWith(fontSize: 11),
-                      ),
-                    ],
+                        Expanded(
+                          child: Padding(
+                            padding: const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              news.source.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1
+                                  .copyWith(fontSize: 11),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          StringTimeGenerator.get(news.lastChangedDateTime),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2
+                              .copyWith(fontSize: 11),
+                        ),
+                      ],
+                    ),
                   ),
-                  Text(
-                    news.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .copyWith(fontSize: 15),
+                  Hero(
+                    tag: '${news.id}-title',
+                    child: Text(
+                      news.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .copyWith(fontSize: 15),
+                    ),
                   ),
                 ],
               ),
             ),
-          ),
         ),
         preferredSize: Size.fromHeight(150),
       ),
@@ -89,12 +88,15 @@ class NewsScreen extends StatelessWidget {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-            child: Text(
-              news.body,
-              overflow: TextOverflow.clip,
-              style: Theme.of(context).textTheme.subtitle1.copyWith(
-                    color: AppTheme.disabledColor,
-                  ),
+            child: Hero(
+              tag: '${news.id}-body',
+              child: Text(
+                news.body,
+                overflow: TextOverflow.clip,
+                style: Theme.of(context).textTheme.subtitle1.copyWith(
+                      color: AppTheme.disabledColor,
+                    ),
+              ),
             ),
           ),
           ...List<Widget>.generate(

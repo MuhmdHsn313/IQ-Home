@@ -51,7 +51,7 @@ class TipApiClient {
 
       return tips;
     } else {
-      return _tipBox.values;
+      return _tipBox.values.toList();
     }
   }
 }
