@@ -31,12 +31,14 @@ class TipCard extends StatelessWidget {
           Expanded(
             flex: 4,
             child: Container(
+              padding: EdgeInsets.all(8.0),
+              width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
-                image: DecorationImage(
-                  image: CachedNetworkImageProvider(tip.cover),
-                  fit: BoxFit.cover,
-                ),
+                color: Theme.of(context).highlightColor,
+              ),
+              child: Image(
+                image: CachedNetworkImageProvider(tip.cover),
               ),
             ),
           ),

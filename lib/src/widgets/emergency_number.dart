@@ -12,24 +12,26 @@ class EmergencyNumber extends StatelessWidget {
       child: ListTile(
         title: Text(
           'الامن الوطني - الجرائم الالكترونية',
-          style: Theme.of(context).textTheme.subtitle1,
+          style: Theme.of(context).textTheme.subtitle1.copyWith(
+                color: Theme.of(context).errorColor,
+              ),
         ),
         trailing: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            IconButton(
+              icon: Icon(
+                IQHomeIcons.arrow_down_circle,
+                color: Theme.of(context).errorColor,
+              ),
+              onPressed: () {},
+            ),
             Text(
               '533',
               style: Theme.of(context)
                   .textTheme
                   .subtitle1
                   .copyWith(color: AppTheme.textColor2),
-            ),
-            IconButton(
-              icon: Icon(
-                IQHomeIcons.arrow_down_circle,
-                color: Theme.of(context).primaryColor,
-              ),
-              onPressed: () {},
             ),
           ],
         ),

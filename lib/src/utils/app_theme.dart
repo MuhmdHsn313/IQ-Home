@@ -10,6 +10,7 @@ class AppTheme {
   static const Color articleBackgroundColor = Color(0xff8D8D8D);
   static const Color disabledColor = Color(0xff727272);
   static const Color unselectedColor = Color(0xffDADADA);
+  static const Color errorColor = Color(0xffDD2222);
 
   static ThemeData lightTheme = new ThemeData(
     primaryColor: primaryColor,
@@ -21,6 +22,7 @@ class AppTheme {
     accentColor: highlightColor,
     disabledColor: disabledColor,
     cardColor: cardColor,
+    errorColor: errorColor,
     unselectedWidgetColor: unselectedColor,
     primaryTextTheme: TextTheme(
         bodyText1: TextStyle(
