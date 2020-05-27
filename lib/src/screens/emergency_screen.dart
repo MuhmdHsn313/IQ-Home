@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:iqhome/src/blocs/emergency/bloc.dart';
 import 'package:iqhome/src/widgets/emergency_number.dart';
 
 class EmergencyScreen extends StatelessWidget {
@@ -15,43 +18,72 @@ class EmergencyScreen extends StatelessWidget {
           icon: Icon(Icons.arrow_back_ios),
         ),
       ),
-      body: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: <Widget>[
-            Padding(
-              padding: const EdgeInsets.only(bottom: 20),
-              child: Container(
-                height: 179,
-                decoration: BoxDecoration(
-                  image: DecorationImage(
-                      image: AssetImage("assets/images/emergency.jpg"),
-                      fit: BoxFit.cover),
+      body: BlocBuilder<EmergencyBloc, EmergencyState>(
+        bloc: BlocProvider.of<EmergencyBloc>(context),
+        builder: (context, state) {
+          if (state is EmergenciesLoaded)
+            return ListView(
+              physics: BouncingScrollPhysics(),
+              children: <Widget>[
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 20),
+                  child: Container(
+                    height: 179,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                          image: AssetImage("assets/images/emergency.jpg"),
+                          fit: BoxFit.cover),
+                    ),
+                  ),
                 ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(5),
-              child: Text(
-                "* اضغط على الجهة التي تريد الاتصال بها",
-                style: Theme.of(context)
-                    .textTheme
-                    .subtitle2
-                    .copyWith(color: Theme.of(context).disabledColor),
-              ),
-            ),
-            ...List<Widget>.generate(
-              10 * 2,
+                Padding(
+                  padding: const EdgeInsets.all(5),
+                  child: Text(
+                    "* اضغط على الجهة التي تريد الاتصال بها",
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle2
+                        .copyWith(color: Theme.of(context).disabledColor),
+                  ),
+                ),
+                ...List<Widget>.generate(
+                  state.emergencies.length * 2,
                   (index) {
-                if (index % 2 == 0)
-                  return EmergencyNumber();
-                return SizedBox(height: 5);
-              },
-            ),
-            SizedBox(height: 10),
-          ],
-        ),
+                    if (index % 2 == 0) return EmergencyNumber(
+                      emergency: state.emergencies[index - (index ~/ 2)],
+                    );
+                    return SizedBox(height: 5);
+                  },
+                ),
+                SizedBox(height: 10),
+              ],
+            );
+
+          if (state is EmergencyError)
+            return Container(
+              alignment: Alignment.center,
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Icon(
+                    Icons.sentiment_dissatisfied,
+                    size: 75,
+                    color: Theme.of(context).disabledColor,
+                  ),
+                  Text(
+                    'Error: ${state.error}',
+                    style: Theme.of(context).textTheme.subtitle2.copyWith(
+                          color: Theme.of(context).disabledColor,
+                        ),
+                  ),
+                ],
+              ),
+            );
+
+          return SpinKitCircle(
+            color: Theme.of(context).errorColor,
+          );
+        },
       ),
     );
   }

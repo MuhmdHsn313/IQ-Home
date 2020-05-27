@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iqhome/src/blocs/emergency/bloc.dart';
 import 'package:iqhome/src/blocs/news/bloc.dart';
 import 'package:iqhome/src/blocs/tip/bloc.dart';
 import 'package:iqhome/src/models/news.dart';
@@ -61,7 +62,10 @@ class _HomeScreenState extends State<HomeScreen> {
               onPressed: () => Navigator.push(
                 context,
                 CupertinoPageRoute(
-                  builder: (context) => EmergencyScreen(),
+                  builder: (context) => BlocProvider<EmergencyBloc>(
+                    create: (context) => EmergencyBloc()..add(FetchEmergency()),
+                    child: EmergencyScreen(),
+                  ),
                 ),
               ),
             ),
@@ -98,8 +102,8 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
             Positioned(
               bottom: 30,
-              left: 125,
-              right: 125,
+              left: 122,
+              right: 122,
               child: Container(
                 alignment: Alignment.bottomCenter,
                 decoration: BoxDecoration(

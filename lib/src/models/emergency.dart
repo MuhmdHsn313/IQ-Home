@@ -30,8 +30,8 @@ class Emergency extends Equatable {
       id: data['id'],
       name: data['name'],
       contact: data['contact'],
-      createDateTime: data['createDateTime'],
-      lastChangedDateTime: data['lastChangedDateTime'],
+      createDateTime: DateTime.parse(data['createDateTime']),
+      lastChangedDateTime: DateTime.parse(data['lastChangedDateTime']),
     );
   }
 
