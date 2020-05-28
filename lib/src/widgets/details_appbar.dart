@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
+class DetailsAppBar extends StatelessWidget {
   final String title;
   final String subtitle;
   final String screenName;
@@ -17,15 +17,12 @@ class DetailsAppBar extends StatelessWidget implements PreferredSizeWidget {
     @required this.subtitle,
     @required this.screenName,
   })  : assert(title != null),
-        this.preferredSize = const Size.fromHeight(275),
         super(key: key);
-
-  @override
-  final Size preferredSize;
 
   @override
   Widget build(BuildContext context) => SafeArea(
         child: Container(
+          height: 275,
           decoration: BoxDecoration(color: Theme.of(context).cardColor),
           child: Column(
             mainAxisSize: MainAxisSize.min,

@@ -9,8 +9,6 @@ abstract class QnAState extends Equatable {
   List<Object> get props => [];
 }
 
-class QnAInitialState extends QnAState {}
-
 class QnALoadingState extends QnAState {}
 
 class QnALoadedState extends QnAState {
@@ -19,7 +17,7 @@ class QnALoadedState extends QnAState {
   const QnALoadedState({@required this.qna}) : assert(qna != null);
 
   @override
-  List<Object> get props => [qna];
+  List<Object> get props => qna;
 }
 
 class QnAErrorState extends QnAState {

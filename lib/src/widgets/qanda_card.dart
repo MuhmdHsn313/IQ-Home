@@ -1,6 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:iqhome/src/models/qanda.dart';
 
 class QandACard extends StatelessWidget {
+  final QandA qandA;
+
+  const QandACard({Key key, @required this.qandA})
+      : assert(qandA != null),
+        super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -23,7 +30,9 @@ class QandACard extends StatelessWidget {
             flex: 7,
             child: Container(
               alignment: Alignment.center,
-              padding: EdgeInsets.symmetric(horizontal: 8.0,),
+              padding: EdgeInsets.symmetric(
+                horizontal: 8.0,
+              ),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
               ),
@@ -32,16 +41,18 @@ class QandACard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset(
-                    'assets/images/who-logo.png',
+                  Image.network(
+                    qandA.logo,
                     height: 35,
                     width: 35,
                     color: Theme.of(context).primaryColor,
                   ),
-                  SizedBox(width: 5,),
+                  SizedBox(
+                    width: 5,
+                  ),
                   Expanded(
                     child: Text(
-                      'ما هي توصيات منظمة الصحة العالمية للمسافرين للخارج؟',
+                      qandA.question,
                       maxLines: 2,
                       style: TextStyle(
                         fontSize: 15,
@@ -59,8 +70,7 @@ class QandACard extends StatelessWidget {
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.5),
               child: Text(
-                """نشرت المنظمة نصائح بشأن السفر في 10 كانون الثاني/يناير. وبناءً على المعلومات المتوفرة حاليًا، لا يوجد بعد ما يبرر فرض أي قيود على السفر أو التجارة. (لا يعد تحرِّي المسافرين بشكل عام قيدًا مفروضًا على السفر). وفي حال تصاعد الوضع، ستوفر منظمة الصحة العالمية إرشادات بشأن مخاطر السفر إلى المناطق الموبوءة. ويجب على المسافرين الاطلاع على التوصيات الحالية للسفر. ففي ذروة وباء عام 2003، كان خطر انتقال فيروس كورونا المسبب لمتلازمة الالتهاب الرئوي الحاد الوخيم (سارس) على المسافرين منخفضًا بشكل إجمالي. كما لم يتم فرض أي قيود على السفر أو التجارة عند ظهور فيروس كورونا المسبب لمتلازمة الشرق الأوسط التنفسية.
-وتُوصي المنظمة أنه يجب على الأشخاص القادمين من مدينة ووهان أو المناطق الأخرى التي تشهد خطرًا شديدًا معرفة الأعراض الرئيسية التي أوضحتها السلطات الصحية، كما يجب عليهم طلب المشورة الطبية من أحد الممارسين الصحيين إذا أُصيبوا بأعراض بعد مغادرتهم لمنطقة الفاشية. ويُنصح المسافرون بالتواصل مع أطبائهم أو السلطات الصحية الوطنية لديهم للحصول على معلومات إضافية، حيث قد تقوم بعض البلدان بتكييف توصيات المنظمة لإدراج اعتبارات وطنية.""",
+                qandA.shortAnswer,
                 maxLines: 3,
                 overflow: TextOverflow.clip,
                 style: Theme.of(context).textTheme.subtitle2,

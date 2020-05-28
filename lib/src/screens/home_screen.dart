@@ -5,6 +5,7 @@ import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:iqhome/src/blocs/emergency/bloc.dart';
 import 'package:iqhome/src/blocs/news/bloc.dart';
+import 'package:iqhome/src/blocs/qna/bloc.dart';
 import 'package:iqhome/src/blocs/tip/bloc.dart';
 import 'package:iqhome/src/models/news.dart';
 import 'package:iqhome/src/screens/emergency_screen.dart';
@@ -12,6 +13,7 @@ import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
 import 'package:iqhome/src/widgets/tip_card.dart';
 
+import 'qanda_screen.dart';
 import 'settingsScreen.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -260,11 +262,19 @@ class _InformationSection extends StatelessWidget {
               SizedBox(
                 height: 35,
               ),
-              _buildInfoCard(
-                context,
-                title: 'سؤال وجواب',
-                svgPath: 'assets/images/q&a.svg',
-              ),
+              _buildInfoCard(context,
+                  title: 'سؤال وجواب',
+                  svgPath: 'assets/images/q&a.svg', onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider<QnABloc>(
+                      create: (context) => QnABloc()..add(FetchQnAEvent()),
+                      child: QandAScreen(),
+                    ),
+                  ),
+                );
+              }),
               SizedBox(
                 height: 15,
               ),
