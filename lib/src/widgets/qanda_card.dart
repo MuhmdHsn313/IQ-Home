@@ -1,5 +1,7 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iqhome/src/models/qanda.dart';
+import 'package:iqhome/src/screens/qanda_details_screen.dart';
 
 class QandACard extends StatelessWidget {
   final QandA qandA;
@@ -41,23 +43,25 @@ class QandACard extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.network(
-                    qandA.logo,
-                    height: 35,
-                    width: 35,
-                    color: Theme.of(context).primaryColor,
+                  Hero(
+                    tag: '${qandA.id}-qna-image',
+                    child: Image(
+                      image: CachedNetworkImageProvider(qandA.logo),
+                      height: 35,
+                      width: 35,
+                      color: Theme.of(context).primaryColor,
+                    ),
                   ),
                   SizedBox(
                     width: 5,
                   ),
                   Expanded(
-                    child: Text(
-                      qandA.question,
-                      maxLines: 2,
-                      style: TextStyle(
-                        fontSize: 15,
-                        color: Theme.of(context).primaryColor,
-                        fontWeight: FontWeight.bold,
+                    child: Hero(
+                      tag: '${qandA.id}-qna-question',
+                      child: Text(
+                        qandA.question,
+                        maxLines: 2,
+                        style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 15),
                       ),
                     ),
                   ),
@@ -69,11 +73,14 @@ class QandACard extends StatelessWidget {
             flex: 10,
             child: Container(
               padding: EdgeInsets.symmetric(horizontal: 8.0, vertical: 2.5),
-              child: Text(
-                qandA.shortAnswer,
-                maxLines: 3,
-                overflow: TextOverflow.clip,
-                style: Theme.of(context).textTheme.subtitle2,
+              child: Hero(
+                tag: '${qandA.id}-qna-answer',
+                child: Text(
+                  qandA.shortAnswer,
+                  maxLines: 3,
+                  overflow: TextOverflow.clip,
+                  style: Theme.of(context).textTheme.subtitle2,
+                ),
               ),
             ),
           ),
@@ -87,9 +94,15 @@ class QandACard extends StatelessWidget {
             flex: 5,
             child: InkWell(
               borderRadius: BorderRadius.vertical(bottom: Radius.circular(25)),
-              onTap: () {
-                print('fff');
-              },
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => QandADetailsScreen(
+                    qandA: qandA,
+                  ),
+                  fullscreenDialog: true,
+                ),
+              ),
               child: Center(
                 child: Text(
                   'متابعة القراءة',
