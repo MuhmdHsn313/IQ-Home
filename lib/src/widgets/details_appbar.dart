@@ -30,6 +30,13 @@ class DetailsAppBar extends StatelessWidget {
             children: [
               Row(
                 children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.arrow_back_ios,
+                      color: Theme.of(context).disabledColor,
+                    ),
+                    onPressed: () => Navigator.pop(context),
+                  ),
                   Expanded(
                     child: Text(
                       title,
@@ -39,13 +46,6 @@ class DetailsAppBar extends StatelessWidget {
                           .headline6
                           .copyWith(color: Theme.of(context).disabledColor),
                     ),
-                  ),
-                  IconButton(
-                    icon: Icon(
-                      Icons.arrow_forward_ios,
-                      color: Theme.of(context).disabledColor,
-                    ),
-                    onPressed: () => Navigator.pop(context),
                   ),
                 ],
               ),
@@ -70,15 +70,21 @@ class DetailsAppBar extends StatelessWidget {
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceAround,
                               children: [
-                                Text(
-                                  screenName,
-                                  style: Theme.of(context).textTheme.headline6,
+                                Hero(
+                                  tag: title,
+                                  child: Text(
+                                    screenName,
+                                    style: Theme.of(context).textTheme.headline6,
+                                  ),
                                 ),
-                                SvgPicture.asset(
-                                  svgPath,
-                                  height: 20,
-                                  width: 20,
-                                  color: Theme.of(context).primaryColor,
+                                Hero(
+                                  tag: svgPath,
+                                  child: SvgPicture.asset(
+                                    svgPath,
+                                    height: 20,
+                                    width: 20,
+                                    color: Theme.of(context).primaryColor,
+                                  ),
                                 ),
                               ],
                             ),

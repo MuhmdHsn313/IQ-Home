@@ -8,6 +8,7 @@ import 'package:iqhome/src/blocs/news/bloc.dart';
 import 'package:iqhome/src/blocs/qna/bloc.dart';
 import 'package:iqhome/src/blocs/tip/bloc.dart';
 import 'package:iqhome/src/models/news.dart';
+import 'package:iqhome/src/screens/about_covid19_screen.dart';
 import 'package:iqhome/src/screens/emergency_screen.dart';
 import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
@@ -262,19 +263,37 @@ class _InformationSection extends StatelessWidget {
               SizedBox(
                 height: 35,
               ),
-              _buildInfoCard(context,
-                  title: 'سؤال وجواب',
-                  svgPath: 'assets/images/q&a.svg', onTap: () {
-                Navigator.push(
+              _buildInfoCard(
+                context,
+                title: 'عن مرض كوفيد - 19',
+                svgPath: 'assets/images/virus.svg',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => AboutCovid19Screen(),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              _buildInfoCard(
+                context,
+                title: 'سؤال وجواب',
+                svgPath: 'assets/images/q&a.svg',
+                onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
                     builder: (context) => BlocProvider<QnABloc>(
-                      create: (context) => QnABloc()..add(FetchQnAEvent()),
+                      create: (context) => QnABloc()
+                        ..add(
+                          FetchQnAEvent(),
+                        ),
                       child: QandAScreen(),
                     ),
                   ),
-                );
-              }),
+                ),
+              ),
               SizedBox(
                 height: 15,
               ),
@@ -358,20 +377,22 @@ class _InformationSection extends StatelessWidget {
                   borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
                   color: Theme.of(context).highlightColor,
                 ),
-                child: SvgPicture.asset(
-                  svgPath,
+                child: Hero(
+                  tag: svgPath,
+                  child: SvgPicture.asset(
+                    svgPath,
+                  ),
                 ),
               ),
             ),
             Expanded(
               flex: 1,
               child: Center(
-                child: Text(
-                  title,
-                  style: TextStyle(
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold,
-                    color: Theme.of(context).primaryColor,
+                child: Hero(
+                  tag: title,
+                  child: Text(
+                    title,
+                    style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18),
                   ),
                 ),
               ),
