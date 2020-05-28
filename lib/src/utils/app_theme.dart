@@ -30,6 +30,9 @@ class AppTheme {
           fontSize: 20,
         ),
     ),
+    iconTheme: IconThemeData(
+      color: disabledColor,
+    ),
     textTheme: TextTheme(
       headline6: TextStyle(
         fontSize: 20,

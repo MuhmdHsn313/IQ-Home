@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:iqhome/src/screens/notes_about_mask_screen.dart';
 import 'package:iqhome/src/widgets/details_appbar.dart';
 
 class AboutMask extends StatelessWidget {
@@ -44,7 +45,12 @@ class AboutMask extends StatelessWidget {
                     Icons.arrow_forward_ios,
                     color: Theme.of(context).primaryColor,
                   ),
-                  onPressed: () {},
+                  onPressed: () => Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => NotesAboutMaskScreen(),
+                    ),
+                  ),
                 ),
               ),
             ),
@@ -52,7 +58,7 @@ class AboutMask extends StatelessWidget {
               7,
               (index) => Container(
                 height: 375,
-                margin: EdgeInsets.symmetric(horizontal: 5,vertical: 5),
+                margin: EdgeInsets.symmetric(horizontal: 5, vertical: 5),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25),
                   image: DecorationImage(
