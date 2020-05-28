@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:iqhome/src/models/news.dart';
 import 'package:iqhome/src/models/section.dart';
 import 'package:iqhome/src/utils/app_theme.dart';
@@ -91,8 +92,15 @@ class NewsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Hero(
               tag: '${news.id}-body',
-              child: Text(
-                news.body,
+              child: Linkify(
+                text: news.body,
+                onOpen: (link) async {
+                  if (await canLaunch(link.url)) {
+                    await launch(link.url);
+                  } else {
+                    throw 'Could not launch ${link.url}';
+                  }
+                },
                 overflow: TextOverflow.clip,
                 style: Theme.of(context).textTheme.subtitle1.copyWith(
                       color: AppTheme.disabledColor,
@@ -153,8 +161,15 @@ class NewsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Text(
-            section.body,
+          child: Linkify(
+            text: section.body,
+            onOpen: (link) async {
+              if (await canLaunch(link.url)) {
+                await launch(link.url);
+              } else {
+                throw 'Could not launch ${link.url}';
+              }
+            },
             overflow: TextOverflow.clip,
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: AppTheme.disabledColor,

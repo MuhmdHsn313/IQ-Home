@@ -14,6 +14,7 @@ import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:iqhome/src/widgets/news_card.dart';
 import 'package:iqhome/src/widgets/tip_card.dart';
 
+import 'about_mask.dart';
 import 'qanda_screen.dart';
 import 'settingsScreen.dart';
 
@@ -301,6 +302,10 @@ class _InformationSection extends StatelessWidget {
                 context,
                 title: 'معلومات عن الكمامة',
                 svgPath: 'assets/images/security.svg',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => AboutMask()),
+                ),
               ),
               SizedBox(
                 height: 15,
@@ -392,7 +397,10 @@ class _InformationSection extends StatelessWidget {
                   tag: title,
                   child: Text(
                     title,
-                    style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        .copyWith(fontSize: 18),
                   ),
                 ),
               ),
