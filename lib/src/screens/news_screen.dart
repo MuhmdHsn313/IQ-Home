@@ -92,7 +92,7 @@ class NewsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
             child: Hero(
               tag: '${news.id}-body',
-              child: Linkify(
+              child: SelectableLinkify(
                 text: news.body,
                 onOpen: (link) async {
                   if (await canLaunch(link.url)) {
@@ -101,7 +101,7 @@ class NewsScreen extends StatelessWidget {
                     throw 'Could not launch ${link.url}';
                   }
                 },
-                overflow: TextOverflow.clip,
+//                overflow: TextOverflow.clip,
                 style: Theme.of(context).textTheme.subtitle1.copyWith(
                       color: AppTheme.disabledColor,
                     ),
@@ -161,7 +161,7 @@ class NewsScreen extends StatelessWidget {
         ),
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-          child: Linkify(
+          child: SelectableLinkify(
             text: section.body,
             onOpen: (link) async {
               if (await canLaunch(link.url)) {
@@ -170,7 +170,7 @@ class NewsScreen extends StatelessWidget {
                 throw 'Could not launch ${link.url}';
               }
             },
-            overflow: TextOverflow.clip,
+//            overflow: TextOverflow.clip,
             style: Theme.of(context).textTheme.subtitle1.copyWith(
                   color: AppTheme.disabledColor,
                 ),

@@ -58,7 +58,7 @@ class QandADetailsScreen extends StatelessWidget {
             padding: EdgeInsets.all(16.0),
             child: Hero(
               tag: '${qandA.id}-qna-answer',
-              child: Linkify(
+              child: SelectableLinkify(
                 text: qandA.answer,
                 onOpen: (link) async {
                   if (await canLaunch(link.url)) {

@@ -18,7 +18,7 @@ class TipAdapter extends TypeAdapter<Tip> {
       title: fields[1] as String,
       cover: fields[2] as String,
       details: fields[3] as String,
-      links: (fields[4] as List)?.cast<String>(),
+      links: (fields[4] as List)?.cast<Map<String,String>>(),
     );
   }
 

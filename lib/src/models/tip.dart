@@ -20,7 +20,7 @@ class Tip extends Equatable {
   @HiveField(3)
   final String details;
   @HiveField(4)
-  final List<String> links;
+  final List<Map<String, String>> links;
 
   Tip({
     @required this.id,
@@ -35,7 +35,7 @@ class Tip extends Equatable {
     String title,
     String cover,
     String details,
-    List<String> links,
+    List<Map<String, String>> links,
   }) =>
       Tip(
         id: id ?? this.id,
@@ -59,9 +59,12 @@ class Tip extends Equatable {
         details: json["details"],
         links: json['links'] == null
             ? []
-            : List<String>.generate(
+            : List<Map<String, String>>.generate(
                 json['links'].length,
-                (index) => json['links'][index],
+                (index) => {
+                  'title': json['links'][index]['title'],
+                  'url': json['links'][index]['url'],
+                },
               ),
       );
 

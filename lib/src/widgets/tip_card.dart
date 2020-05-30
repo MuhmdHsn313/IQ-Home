@@ -1,6 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:iqhome/src/models/tip.dart';
+import 'package:iqhome/src/screens/tip_screen.dart';
 
 class TipCard extends StatelessWidget {
   final Tip tip;
@@ -12,12 +13,12 @@ class TipCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-//      onTap: () => Navigator.push(
-//        context,
-//        MaterialPageRoute(
-//          builder: (context) => TipDetailsScreen(tip: tip),
-//        ),
-//      ),
+      onTap: () => Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (context) => TipScreen(tip: tip),
+        ),
+      ),
       child: Container(
         height: 185,
         width: 380,

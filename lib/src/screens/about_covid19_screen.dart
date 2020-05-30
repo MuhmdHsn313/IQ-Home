@@ -37,7 +37,9 @@ class AboutCovid19Screen extends StatelessWidget {
                     color: Theme.of(context).unselectedWidgetColor,
                   ),
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Hero(
                   tag: 'عن مرض كوفيد - 19',
                   child: Text(
@@ -51,7 +53,7 @@ class AboutCovid19Screen extends StatelessWidget {
           ),
           Container(
             padding: EdgeInsets.all(16.0),
-            child: Linkify(
+            child: SelectableLinkify(
               text:
                   """تعد فيروسات كورونا فصيلة كبيرة من الفيروسات التي تسبب اعتلالات تتنوع بين الزكام وأمراض أكثر وخامة، مثل متلازمة الشرق الأوسط التنفسية (MERS-CoV)، ومتلازمة الالتهاب الرئوي الحاد الوخيم (سارس) (SARS-CoV). ويُمثِّل فيروس كورونا المستجد (nCoV) سلالة جديدة لم يسبق تحديدها لدى البشر من قبل.
 
@@ -71,6 +73,87 @@ class AboutCovid19Screen extends StatelessWidget {
                     color: Theme.of(context).disabledColor,
                   ),
             ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Container(
+            color: Theme.of(context).cardColor,
+            child: ListTile(
+              title: Text('مواقع ذات صلة'),
+            ),
+          ),
+          SizedBox(
+            height: 10,
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () async {
+                final url =
+                    'http://www.emro.who.int/ar/media/news/statement-by-the-regional-director-dr-ahmed-al-mandhari-on-covid-19-in-the-eastern-mediterranean.html';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Text(
+                'بيان الدكتور أحمد بن سالم المنظري، المدير الإقليمي لمنظمة الصحة العالمية، بشأن مرض كوفيد-19 في إقليم شرق المتوسط',
+                style: TextStyle(
+                  fontSize: 14,
+                  decoration: TextDecoration.underline,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () async {
+                final url =
+                    'http://www.emro.who.int/ar/media/news/whos-eastern-mediterranean-region-scales-up-preparedness-for-novel-coronavirus.html';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Text(
+                'إقليم منظمة الصحة العالمية لشرق المتوسط يرفع حالة التأهب لفيروس كورونا المستجد',
+                style: TextStyle(
+                  fontSize: 14,
+                  decoration: TextDecoration.underline,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: InkWell(
+              onTap: () async {
+                final url =
+                    'http://www.emro.who.int/health-topics/mers-cov/index.html';
+                if (await canLaunch(url)) {
+                  await launch(url);
+                } else {
+                  throw 'Could not launch $url';
+                }
+              },
+              child: Text(
+                'متلازمة الشرق الأوسط التنفسية (MERS-CoV)',
+                style: TextStyle(
+                  fontSize: 14,
+                  decoration: TextDecoration.underline,
+                  color: Theme.of(context).primaryColor,
+                ),
+              ),
+            ),
+          ),
+          SizedBox(
+            height: 10,
           ),
         ],
       ),

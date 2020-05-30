@@ -97,67 +97,66 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
         body: Stack(
           children: [
-            Positioned(
-              left: 0,
-              right: 0,
-              bottom: 0,
-              top: 0,
+            Positioned.fill(
               child: currentScreen,
             ),
             Positioned(
               bottom: 30,
-              left: 122,
-              right: 122,
               child: Container(
-                alignment: Alignment.bottomCenter,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).cardColor,
-                  borderRadius: BorderRadius.circular(25),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Theme.of(context).disabledColor,
-                      blurRadius: 10,
-                      offset: Offset(0, 3),
-                    ),
-                  ],
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    IconButton(
-                      icon: Icon(
-                        IQHomeIcons.statistics,
+                alignment: Alignment.center,
+                width: MediaQuery.of(context).size.width,
+                child: Container(
+                  width: MediaQuery.of(context).size.width / 3 + 25,
+                  alignment: Alignment.bottomCenter,
+                  decoration: BoxDecoration(
+                    color: Theme.of(context).cardColor,
+                    borderRadius: BorderRadius.circular(25),
+                    boxShadow: [
+                      BoxShadow(
                         color: Theme.of(context).disabledColor,
+                        blurRadius: 10,
+                        offset: Offset(0, 3),
                       ),
-                      onPressed: () {},
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        IQHomeIcons.home,
-                        color: currentScreen is _HomeSection
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).disabledColor,
+                    ],
+                  ),
+                  child: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      IconButton(
+                        icon: Icon(
+                          IQHomeIcons.statistics,
+                          color: Theme.of(context).disabledColor,
+                        ),
+                        onPressed: () {},
                       ),
-                      onPressed: () => setState(
-                        () => currentScreen = _HomeSection(),
+                      IconButton(
+                        icon: Icon(
+                          IQHomeIcons.home,
+                          color: currentScreen is _HomeSection
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).disabledColor,
+                        ),
+                        onPressed: () => setState(
+                          () => currentScreen = _HomeSection(),
+                        ),
                       ),
-                    ),
-                    IconButton(
-                      icon: Icon(
-                        IQHomeIcons.information,
-                        color: currentScreen is _InformationSection
-                            ? Theme.of(context).primaryColor
-                            : Theme.of(context).disabledColor,
+                      IconButton(
+                        icon: Icon(
+                          IQHomeIcons.information,
+                          color: currentScreen is _InformationSection
+                              ? Theme.of(context).primaryColor
+                              : Theme.of(context).disabledColor,
+                        ),
+                        onPressed: () => setState(
+                          () => currentScreen = _InformationSection(),
+                        ),
                       ),
-                      onPressed: () => setState(
-                        () => currentScreen = _InformationSection(),
-                      ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            ),
+            )
           ],
         ),
       ),
