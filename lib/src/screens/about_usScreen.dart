@@ -18,7 +18,7 @@ class AboutUsScreen extends StatelessWidget {
         children: <Widget>[
           Container(
             height: 179,
-            color: Colors.white,
+            color: Theme.of(context).cardColor,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
@@ -29,7 +29,7 @@ class AboutUsScreen extends StatelessWidget {
                     children: [
                       Text(
                         "مبادرة",
-                        style: TextStyle(fontSize: 17),
+                        style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 17),
                       ),
                       SizedBox(
                         height: 5,
@@ -57,42 +57,28 @@ class AboutUsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Text(
               "عن المبادرة",
-              style: TextStyle(
-                fontSize: 23,
-                color: Color(0xff55AA88),
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
               """ وهي مبادرة إنسانية غير ربحية تهدف الى خدمة المجتمع عن طريق البرمجة تعتبر هذه المبادرة مبادرة تعليمية حقيقية ترعى المهتمين بتعلم تصميم وبرمجة تطبيقات الهاتف الجوال ومواقع الانترنت وبرامج الحاسوب والشبكات والاتصالات ونظم تشغيل الحاسوب باستخدام التقنيات مفتوحة المصدر كما توفر لهم جميع الدروس التعليمية اللازمة وبشكل مجاني تماما بل الأهم من ذلك تعتمد على مبدأ المواطنة والمشاركة الفاعل""",
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xff727272),
-              ),
+                style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
             child: Text(
               "تدعوا المبادرة",
-              style: TextStyle(
-                fontSize: 23,
-                color: Color(0xff55AA88),
-                fontWeight: FontWeight.bold,
-              ),
+              style: Theme.of(context).textTheme.headline6,
             ),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
               """في تأسيس وبناء المجتمع تدعو هذه المبادرة جميع الطلبة والخريجين والهواة والاساتذة الجامعيين والمهتمين في مجال البرمجة وتقنيات المعلومات وكذلك الاختصاصات الأخرى للتطوع والمشاركة الفعلية لأجل الارتقاء بواقع البلد حيث تعتبر فرصة عظيمة لأكتساب الخبرة والمهارة عن طريق تصميم وتنفيذ برامج وتطبيقات خدمية من شأنها خدمة المواطن وذلك ضمن مجاميع عمل نشطة وفعالة يتعاون فيها جميع الأفراد كفريق واحد لتبادل الآراء والخبرات ويطرح الأفكار ليتم مناقشتها وتطبيقها على أرض الواقع كما تفتح المجال لجميع المواطنين العراقيين ومن جميع الاختصاصات الى المشاركة الفاعلة في هذه المشاريع لرفد الفريق بالخبرات والأفكار والآراء والمقترحات التي من شأنها خدمة المجتمع بأفضل ما يمكن""",
-              style: TextStyle(
-                fontSize: 14,
-                color: Color(0xff727272),
-              ),
+              style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
           Padding(

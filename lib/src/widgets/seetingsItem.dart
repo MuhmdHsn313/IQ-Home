@@ -3,9 +3,11 @@ import 'package:flutter/material.dart';
 
 class SettingsItem extends StatelessWidget {
   final String title;
+  final VoidCallback onTap;
 
   const SettingsItem({
     @required this.title,
+    @required this.onTap,
   }) : assert(title != null);
 
   @override
@@ -13,7 +15,7 @@ class SettingsItem extends StatelessWidget {
     return Container(
       color: Theme.of(context).cardColor,
       child: ListTile(
-        onTap: () {},
+        onTap: onTap,
         title: Text(title),
         trailing: Icon(
           Icons.arrow_forward_ios,

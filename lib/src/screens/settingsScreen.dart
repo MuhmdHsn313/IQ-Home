@@ -3,6 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
 import 'package:iqhome/src/blocs/app_settings/bloc.dart';
+import 'package:iqhome/src/screens/about_app.dart';
+import 'package:iqhome/src/screens/about_usScreen.dart';
 import 'package:iqhome/src/widgets/fontSize.dart';
 import 'package:iqhome/src/widgets/rate.dart';
 import 'package:iqhome/src/widgets/seetingsItem.dart';
@@ -12,7 +14,6 @@ class SettingsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Color(0xff55AA88),
         elevation: 0.0,
         centerTitle: true,
         title: Text(
@@ -36,8 +37,8 @@ class SettingsScreen extends StatelessWidget {
                 height: 48,
                 color: Theme.of(context).cardColor,
                 child: ListTile(
-                  title: Text(
-                      state.isDarkMode ? "الوضع النهاري" : "الوضع المظلم" ),
+                  title:
+                      Text(state.isDarkMode ? "الوضع النهاري" : "الوضع المظلم"),
                   trailing: CupertinoSwitch(
                     value: state.isDarkMode,
                     onChanged: (change) =>
@@ -77,12 +78,24 @@ class SettingsScreen extends StatelessWidget {
             ),
             SettingsItem(
               title: "عن التطبيق",
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutAppScreen(),
+                ),
+              ),
             ),
             SizedBox(
               height: 8,
             ),
             SettingsItem(
               title: "من نحن",
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => AboutUsScreen(),
+                ),
+              ),
             ),
             SizedBox(
               height: 8,
