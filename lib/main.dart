@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_event.dart';
+import 'package:iqhome/src/models/app_settings.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
 import 'src/app.dart';
@@ -23,5 +27,11 @@ void main() async {
   Hive.registerAdapter(AppFontSizeAdapter());
   Hive.registerAdapter(NewsStatusAdapter());
   Hive.registerAdapter(EmergencyAdapter());
-  runApp(IQHome());
+  Hive.registerAdapter(AppSettingsAdapter());
+  runApp(
+    BlocProvider<AppSettingsBloc>(
+      create: (context) => AppSettingsBloc()..add(FetchTheme()),
+      child: IQHome(),
+    ),
+  );
 }

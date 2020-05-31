@@ -12,47 +12,74 @@ class AppTheme {
   static const Color unselectedColor = Color(0xffDADADA);
   static const Color errorColor = Color(0xffDD2222);
 
-  static ThemeData lightTheme = new ThemeData(
-    primaryColor: primaryColor,
-    highlightColor: highlightColor,
-    fontFamily: 'Tajawal',
-    canvasColor: backgroundColor,
-    backgroundColor: backgroundColor,
-    indicatorColor: primaryColor.withOpacity(0.99),
-    accentColor: highlightColor,
-    disabledColor: disabledColor,
-    cardColor: cardColor,
-    errorColor: errorColor,
-    unselectedWidgetColor: unselectedColor,
-    primaryTextTheme: TextTheme(
-        bodyText1: TextStyle(
-          color: primaryColor,
-          fontSize: 20,
+  static ThemeData lightTheme(double fontScale) => new ThemeData(
+        primaryColor: primaryColor,
+        highlightColor: highlightColor,
+        fontFamily: 'Tajawal',
+        canvasColor: backgroundColor,
+        backgroundColor: backgroundColor,
+        indicatorColor: primaryColor.withOpacity(0.99),
+        accentColor: highlightColor,
+        disabledColor: disabledColor,
+        cardColor: cardColor,
+        errorColor: errorColor,
+        unselectedWidgetColor: unselectedColor,
+        primaryTextTheme: TextTheme(
+          bodyText1: TextStyle(
+            color: primaryColor,
+            fontSize: 20 * fontScale,
+          ),
         ),
-    ),
-    iconTheme: IconThemeData(
-      color: disabledColor,
-    ),
-    textTheme: TextTheme(
-      headline6: TextStyle(
-        fontSize: 20,
-        color: primaryColor,
-        fontWeight: FontWeight.bold,
+        iconTheme: IconThemeData(
+          color: disabledColor,
+        ),
+        textTheme: TextTheme(
+          headline6: TextStyle(
+            fontSize: 20 * fontScale,
+            color: primaryColor,
+            fontWeight: FontWeight.bold,
+          ),
+          subtitle1: TextStyle(
+            fontSize: 17 * fontScale,
+            color: primaryColor,
+            fontWeight: FontWeight.normal,
+          ),
+          subtitle2: TextStyle(
+            fontSize: 13 * fontScale,
+            color: textColor1,
+            height: 1.5,
+            fontWeight: FontWeight.normal,
+          ),
+        ),
+        primaryIconTheme: IconThemeData(
+          color: Colors.white,
+        ),
+      );
+
+  static ThemeData dark(double fontScale) {
+    return ThemeData(
+      fontFamily: 'Tajawal',
+      brightness: Brightness.dark,
+      primaryTextTheme: TextTheme(
+        bodyText1: TextStyle(
+          fontSize: 20 * fontScale,
+        ),
       ),
-      subtitle1: TextStyle(
-        fontSize: 17,
-        color: primaryColor,
-        fontWeight: FontWeight.normal,
+      textTheme: TextTheme(
+        headline6: TextStyle(
+          fontSize: 20 * fontScale,
+          fontWeight: FontWeight.bold,
+        ),
+        subtitle1: TextStyle(
+          fontSize: 17 * fontScale,
+          fontWeight: FontWeight.normal,
+        ),
+        subtitle2: TextStyle(
+          fontSize: 13 * fontScale,
+          height: 1.5,
+          fontWeight: FontWeight.normal,
+        ),
       ),
-      subtitle2: TextStyle(
-        fontSize: 13,
-        color: textColor1,
-        height: 1.5,
-        fontWeight: FontWeight.normal,
-      ),
-    ),
-    primaryIconTheme: IconThemeData(
-      color: Colors.white,
-    ),
-  );
+    );
+  }
 }

@@ -3,7 +3,7 @@ import 'package:hive/hive.dart';
 part '../adapters/public_type.dart';
 
 @HiveType(typeId: 5)
-enum AppFontSize {
+enum AppFontScale {
   @HiveField(0)
   Small,
   @HiveField(1)

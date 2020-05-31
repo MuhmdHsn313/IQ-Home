@@ -6,36 +6,36 @@ part of '../utils/public_type.dart';
 // TypeAdapterGenerator
 // **************************************************************************
 
-class AppFontSizeAdapter extends TypeAdapter<AppFontSize> {
+class AppFontSizeAdapter extends TypeAdapter<AppFontScale> {
   @override
-  AppFontSize read(BinaryReader reader) {
+  AppFontScale read(BinaryReader reader) {
     switch (reader.readByte()) {
       case 0:
-        return AppFontSize.Small;
+        return AppFontScale.Small;
       case 1:
-        return AppFontSize.Middle;
+        return AppFontScale.Middle;
       case 2:
-        return AppFontSize.Large;
+        return AppFontScale.Large;
       case 3:
-        return AppFontSize.Giant;
+        return AppFontScale.Giant;
       default:
         return null;
     }
   }
 
   @override
-  void write(BinaryWriter writer, AppFontSize obj) {
+  void write(BinaryWriter writer, AppFontScale obj) {
     switch (obj) {
-      case AppFontSize.Small:
+      case AppFontScale.Small:
         writer.writeByte(0);
         break;
-      case AppFontSize.Middle:
+      case AppFontScale.Middle:
         writer.writeByte(1);
         break;
-      case AppFontSize.Large:
+      case AppFontScale.Large:
         writer.writeByte(2);
         break;
-      case AppFontSize.Giant:
+      case AppFontScale.Giant:
         writer.writeByte(3);
         break;
     }

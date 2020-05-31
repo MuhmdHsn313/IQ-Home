@@ -1,81 +1,66 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_event.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_state.dart';
 import 'package:iqhome/src/utils/public_type.dart';
 
 class FontSizeWidget extends StatelessWidget {
-  final AppFontSize size;
-
-  const FontSizeWidget({
-    Key key,
-    this.size: AppFontSize.Middle,
-  })  : assert(size != null),
-        super(key: key);
-
   @override
   Widget build(BuildContext context) {
-    double fontSize;
-    switch (size) {
-      case AppFontSize.Small:
-        fontSize = 14;
-        break;
-      case AppFontSize.Middle:
-        fontSize = 16;
-        break;
-      case AppFontSize.Large:
-        fontSize = 18;
-        break;
-      case AppFontSize.Giant:
-        fontSize = 22;
-        break;
-      default:
-        fontSize = 14;
-    }
-
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text("حجم الخط", style: Theme.of(context).textTheme.subtitle1),
-        ),
-        Container(
-          height: 48,
-          color: Colors.white,
-          alignment: Alignment.center,
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SelectFontSize(
-                title: 'صغير',
-                isSelected: size == AppFontSize.Small,
-              ),
-              SelectFontSize(
-                title: 'متوسط',
-                isSelected: size == AppFontSize.Middle,
-              ),
-              SelectFontSize(
-                title: 'كبير',
-                isSelected: size == AppFontSize.Large,
-              ),
-              SelectFontSize(
-                title: 'عملاق',
-                isSelected: size == AppFontSize.Giant,
-              ),
-            ],
-          ),
-        ),
-        Padding(
-          padding:
-              const EdgeInsets.only(right: 32, left: 32, top: 10, bottom: 20),
-          child: Text(
-            "هذا الخط هو مثال عن الحجم الذي اخترته..."
-            "اختر ماينسابك من حجم الخط حيث يكون مريح في القراءة بالنسبة لك.",
-            style: TextStyle(
-              color: Color(0xffB0B0B0),
-              fontSize: fontSize,
+    return BlocBuilder<AppSettingsBloc, AppSettingsState>(
+      bloc: BlocProvider.of<AppSettingsBloc>(context),
+      builder: (context, state) {
+        return Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: <Widget>[
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 10),
+              child: Text("حجم الخط",
+                  style: Theme.of(context).textTheme.subtitle1),
             ),
-          ),
-        )
-      ],
+            Container(
+              height: 48,
+              color: Theme.of(context).cardColor,
+              alignment: Alignment.center,
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SelectFontSize(
+                    title: 'صغير',
+                    scale: AppFontScale.Small,
+                    isSelected: state.size == AppFontScale.Small,
+                  ),
+                  SelectFontSize(
+                    title: 'متوسط',
+                    scale: AppFontScale.Middle,
+                    isSelected: state.size == AppFontScale.Middle,
+                  ),
+                  SelectFontSize(
+                    title: 'كبير',
+                    scale: AppFontScale.Large,
+                    isSelected: state.size == AppFontScale.Large,
+                  ),
+                  SelectFontSize(
+                    title: 'عملاق',
+                    scale: AppFontScale.Giant,
+                    isSelected: state.size == AppFontScale.Giant,
+                  ),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.only(
+                  right: 32, left: 32, top: 10, bottom: 20),
+              child: Text(
+                "هذا الخط هو مثال عن الحجم الذي اخترته..."
+                "اختر ماينسابك من حجم الخط حيث يكون مريح في القراءة بالنسبة لك.",
+                style: Theme.of(context).textTheme.subtitle2,
+              ),
+            )
+          ],
+        );
+      },
     );
   }
 }
@@ -83,10 +68,12 @@ class FontSizeWidget extends StatelessWidget {
 class SelectFontSize extends StatelessWidget {
   final String title;
   final bool isSelected;
+  final AppFontScale scale;
 
   const SelectFontSize({
     Key key,
     @required this.title,
+    @required this.scale,
     @required this.isSelected,
   })  : assert(title != null),
         assert(isSelected != null),
@@ -105,12 +92,16 @@ class SelectFontSize extends StatelessWidget {
         ),
         color: isSelected ? Theme.of(context).primaryColor : Colors.white,
       ),
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: TextStyle(
-          fontSize: 14,
-          color: isSelected ? Colors.white : Theme.of(context).primaryColor,
+      child: InkWell(
+        onTap: () => BlocProvider.of<AppSettingsBloc>(context)
+            .add(ChangeFontScale(scale)),
+        child: Text(
+          title,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 14,
+            color: isSelected ? Colors.white : Theme.of(context).primaryColor,
+          ),
         ),
       ),
     );

@@ -1,7 +1,10 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
+import 'package:iqhome/src/blocs/app_settings/bloc.dart';
 import 'package:iqhome/src/widgets/fontSize.dart';
 import 'package:iqhome/src/widgets/rate.dart';
-import 'package:iqhome/src/widgets/seetingsCheckBox.dart';
 import 'package:iqhome/src/widgets/seetingsItem.dart';
 
 class SettingsScreen extends StatelessWidget {
@@ -27,11 +30,42 @@ class SettingsScreen extends StatelessWidget {
               child: Rate(),
             ),
             FontSizeWidget(),
-            SettingsCheckBox("الوضع المظلم"),
+            BlocBuilder<AppSettingsBloc, AppSettingsState>(
+              bloc: BlocProvider.of<AppSettingsBloc>(context),
+              builder: (context, state) => Container(
+                height: 48,
+                color: Theme.of(context).cardColor,
+                child: ListTile(
+                  title: Text(
+                      state.isDarkMode ? "الوضع النهاري" : "الوضع المظلم" ),
+                  trailing: CupertinoSwitch(
+                    value: state.isDarkMode,
+                    onChanged: (change) =>
+                        BlocProvider.of<AppSettingsBloc>(context)
+                            .add(ChangeThemeMode(change)),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 13.5,
             ),
-            SettingsCheckBox("الأشعارات"),
+            BlocBuilder<AppSettingsBloc, AppSettingsState>(
+              bloc: BlocProvider.of<AppSettingsBloc>(context),
+              builder: (context, state) => Container(
+                height: 48,
+                color: Theme.of(context).cardColor,
+                child: ListTile(
+                  title: Text("الأشعارات"),
+                  trailing: CupertinoSwitch(
+                    value: state.isNotificationEnable,
+                    onChanged: (change) =>
+                        BlocProvider.of<AppSettingsBloc>(context)
+                            .add(ChangeNotificationState(change)),
+                  ),
+                ),
+              ),
+            ),
             SizedBox(
               height: 45,
             ),
