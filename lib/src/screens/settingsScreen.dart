@@ -3,8 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
 import 'package:iqhome/src/blocs/app_settings/bloc.dart';
+import 'package:iqhome/src/blocs/source/bloc.dart';
 import 'package:iqhome/src/screens/about_app.dart';
 import 'package:iqhome/src/screens/about_usScreen.dart';
+import 'package:iqhome/src/screens/our_sources_screen.dart';
 import 'package:iqhome/src/widgets/fontSize.dart';
 import 'package:iqhome/src/widgets/rate.dart';
 import 'package:iqhome/src/widgets/seetingsItem.dart';
@@ -72,6 +74,15 @@ class SettingsScreen extends StatelessWidget {
             ),
             SettingsItem(
               title: "مصادرنا (المواقع الرسمية)",
+              onTap: () => Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (context) => BlocProvider<SourceBloc>(
+                    create: (context) => SourceBloc()..add(FetchSources()),
+                    child: OurSourcesScreen(),
+                  ),
+                ),
+              ),
             ),
             SizedBox(
               height: 8,

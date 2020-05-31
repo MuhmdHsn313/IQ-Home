@@ -13,7 +13,10 @@ class EmergencyRepository extends HomeRepository<Emergency> {
         ApiReference.contact,
       );
 
-      if (tipResponse.statusCode != 200) throw Exception(tipResponse.body);
+      if (tipResponse.statusCode != 200) {
+        if (box.isNotEmpty) return box.values.toList();
+        throw Exception(tipResponse.body);
+      }
 
       final List data = jsonDecode(tipResponse.body);
       final emergencies = List<Emergency>.generate(

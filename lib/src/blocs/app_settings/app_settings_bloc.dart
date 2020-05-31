@@ -34,7 +34,7 @@ class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
 
     if (event is ChangeThemeMode) {
       yield state.copyWith(isDarkMode: event.isDarkMode);
-      _settingsBox.put(
+      await _settingsBox.put(
         1,
         _appSettings.copyWith(
           isDarkMode: event.isDarkMode,
@@ -59,7 +59,7 @@ class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
       }
 
       yield state.copyWith(fontScale: scale, size: event.fontScale);
-      _settingsBox.put(
+      await _settingsBox.put(
         1,
         _appSettings.copyWith(
           scale: event.fontScale,
@@ -68,7 +68,7 @@ class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
     }
     if (event is ChangeNotificationState) {
       yield state.copyWith(isNotificationEnable: event.isNotificationEnable);
-      _settingsBox.put(
+      await _settingsBox.put(
         1,
         _appSettings.copyWith(
           isNotificationEnable: event.isNotificationEnable,

@@ -17,6 +17,8 @@ class TipRepository extends HomeRepository<Tip> {
       );
 
       if (tipResponse.statusCode != 200) {
+        if(box.isNotEmpty)
+          return box.values.toList();
         throw Exception(tipResponse.body);
       }
 

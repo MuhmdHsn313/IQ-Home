@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 
 class AboutUsScreen extends StatelessWidget {
   @override
@@ -29,7 +30,10 @@ class AboutUsScreen extends StatelessWidget {
                     children: [
                       Text(
                         "مبادرة",
-                        style: Theme.of(context).textTheme.subtitle2.copyWith(fontSize: 17),
+                        style: Theme.of(context)
+                            .textTheme
+                            .subtitle2
+                            .copyWith(fontSize: 17),
                       ),
                       SizedBox(
                         height: 5,
@@ -48,7 +52,11 @@ class AboutUsScreen extends StatelessWidget {
                 ),
                 Expanded(
                   flex: 5,
-                  child: Image.asset('assets/images/codeforiraq.png'),
+                  child: SvgPicture.asset(
+                    'assets/images/cfi_logo.svg',
+                    height: 105,
+                    width: 105,
+                  ),
                 ),
               ],
             ),
@@ -64,7 +72,7 @@ class AboutUsScreen extends StatelessWidget {
             padding: const EdgeInsets.symmetric(horizontal: 15),
             child: Text(
               """ وهي مبادرة إنسانية غير ربحية تهدف الى خدمة المجتمع عن طريق البرمجة تعتبر هذه المبادرة مبادرة تعليمية حقيقية ترعى المهتمين بتعلم تصميم وبرمجة تطبيقات الهاتف الجوال ومواقع الانترنت وبرامج الحاسوب والشبكات والاتصالات ونظم تشغيل الحاسوب باستخدام التقنيات مفتوحة المصدر كما توفر لهم جميع الدروس التعليمية اللازمة وبشكل مجاني تماما بل الأهم من ذلك تعتمد على مبدأ المواطنة والمشاركة الفاعل""",
-                style: Theme.of(context).textTheme.subtitle2,
+              style: Theme.of(context).textTheme.subtitle2,
             ),
           ),
           Padding(

@@ -12,6 +12,10 @@ class NewsRepository extends HomeRepository<News> {
       Response response = await client.get(
         ApiReference.home(index ?? 0, fetch ?? 20),
       );
+
+      if (response.statusCode != 200 && box.isNotEmpty)
+        yield box.values.toList();
+
       final List list = json.decode(response.body);
       final newsList = List<News>.generate(
         list.length,

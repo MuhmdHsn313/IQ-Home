@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:iqhome/src/blocs/app_settings/bloc.dart';
+import 'package:iqhome/src/widgets/source_card.dart';
 
 import 'blocs/news/bloc.dart';
 import 'blocs/tip/bloc.dart';

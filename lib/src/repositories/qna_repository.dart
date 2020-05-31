@@ -14,8 +14,10 @@ class QandARepository extends HomeRepository<QandA> {
         ApiReference.qna,
       );
 
-      if (qnaResponse.statusCode != 200) throw Exception(qnaResponse.body);
-
+      if (qnaResponse.statusCode != 200) {
+        if (box.isNotEmpty) return box.values.toList();
+        throw Exception(qnaResponse.body);
+      }
       final List data = jsonDecode(qnaResponse.body);
       final qnas = List<QandA>.generate(
         data.length,
