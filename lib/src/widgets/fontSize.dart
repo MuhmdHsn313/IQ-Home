@@ -20,7 +20,7 @@ class FontSizeWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1),
             ),
             Container(
-              height: 48,
+              height: 50,
               color: Theme.of(context).cardColor,
               alignment: Alignment.center,
               child: Row(

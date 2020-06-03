@@ -57,29 +57,37 @@ class AppTheme {
       );
 
   static ThemeData dark(double fontScale) {
-    return ThemeData(
-      fontFamily: 'Tajawal',
-      brightness: Brightness.dark,
-      primaryTextTheme: TextTheme(
-        bodyText1: TextStyle(
-          fontSize: 20 * fontScale,
-        ),
-      ),
-      textTheme: TextTheme(
-        headline6: TextStyle(
-          fontSize: 20 * fontScale,
-          fontWeight: FontWeight.bold,
-        ),
-        subtitle1: TextStyle(
-          fontSize: 17 * fontScale,
-          fontWeight: FontWeight.normal,
-        ),
-        subtitle2: TextStyle(
-          fontSize: 13 * fontScale,
-          height: 1.5,
-          fontWeight: FontWeight.normal,
-        ),
-      ),
+    return lightTheme(fontScale).copyWith(
+      backgroundColor: Colors.black,
+      scaffoldBackgroundColor: Colors.black,
+      cardColor: Color(0xff080b0b),
     );
   }
+
+//  static ThemeData dark(double fontScale) {
+//    return ThemeData(
+//      fontFamily: 'Tajawal',
+//      brightness: Brightness.dark,
+//      primaryTextTheme: TextTheme(
+//        bodyText1: TextStyle(
+//          fontSize: 20 * fontScale,
+//        ),
+//      ),
+//      textTheme: TextTheme(
+//        headline6: TextStyle(
+//          fontSize: 20 * fontScale,
+//          fontWeight: FontWeight.bold,
+//        ),
+//        subtitle1: TextStyle(
+//          fontSize: 17 * fontScale,
+//          fontWeight: FontWeight.normal,
+//        ),
+//        subtitle2: TextStyle(
+//          fontSize: 13 * fontScale,
+//          height: 1.5,
+//          fontWeight: FontWeight.normal,
+//        ),
+//      ),
+//    );
+//  }
 }
