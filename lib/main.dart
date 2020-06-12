@@ -4,6 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
 import 'package:iqhome/src/blocs/app_settings/app_settings_event.dart';
 import 'package:iqhome/src/models/app_settings.dart';
+import 'package:iqhome/src/models/area_statics.dart';
+import 'package:iqhome/src/models/statics.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
 import 'src/app.dart';
@@ -28,6 +30,8 @@ void main() async {
   Hive.registerAdapter(NewsStatusAdapter());
   Hive.registerAdapter(EmergencyAdapter());
   Hive.registerAdapter(AppSettingsAdapter());
+  Hive.registerAdapter(StaticsAdapter());
+  Hive.registerAdapter(AreaStaticsAdapter());
   runApp(
     BlocProvider<AppSettingsBloc>(
       create: (context) => AppSettingsBloc()..add(FetchTheme()),

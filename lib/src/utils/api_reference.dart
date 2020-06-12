@@ -22,4 +22,13 @@ class ApiReference {
 
   /// Fetch contact data.
   static const qna = Url + 'qna';
+
+  /// Fetch media
+  static media(int index, int fetch) => Url + 'media/$index/$fetch';
+
+  /// Fetch concepts
+  static const concept = Url + 'consept';
+
+  /// Fetch Iraq covid-19 statistics
+  static const localStatistics = Url + 'statistics/local';
 }
