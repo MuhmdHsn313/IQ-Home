@@ -1,8 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:iqhome/src/models/qanda.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
 
+import '../models/qanda.dart';
+import '../utils/api_reference.dart';
 import 'home_repository.dart';
 
 class QandARepository extends HomeRepository<QandA> {

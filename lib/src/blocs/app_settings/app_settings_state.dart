@@ -1,7 +1,8 @@
-import 'package:iqhome/src/models/app_settings.dart';
-import 'package:iqhome/src/utils/public_type.dart';
-import 'package:meta/meta.dart';
 import 'package:equatable/equatable.dart';
+import 'package:meta/meta.dart';
+
+import '../../models/app_settings.dart';
+import '../../utils/public_type.dart';
 
 class AppSettingsState extends Equatable {
   final double fontScale;

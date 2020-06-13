@@ -1,10 +1,11 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iqhome/src/blocs/news/bloc.dart';
-import 'package:iqhome/src/models/news.dart';
-import 'package:iqhome/src/screens/news_screen.dart';
-import 'package:iqhome/src/utils/string_time_generator.dart';
+
+import '../blocs/news/bloc.dart';
+import '../models/news.dart';
+import '../screens/news_screen.dart';
+import '../utils/string_time_generator.dart';
 
 class NewsCard extends StatelessWidget {
   final News news;

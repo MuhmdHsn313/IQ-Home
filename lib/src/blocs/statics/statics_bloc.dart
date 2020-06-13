@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/repositories/statics_repository.dart';
+
 import './bloc.dart';
+import '../../repositories/statics_repository.dart';
 
 class StaticsBloc extends Bloc<StaticsEvent, StaticsState> {
   StaticsRepository _repository;

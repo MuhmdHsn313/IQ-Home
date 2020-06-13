@@ -2,9 +2,10 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:iqhome/src/blocs/qna/bloc.dart';
-import 'package:iqhome/src/widgets/details_appbar.dart';
-import 'package:iqhome/src/widgets/qanda_card.dart';
+
+import '../blocs/qna/bloc.dart';
+import '../widgets/details_appbar.dart';
+import '../widgets/qanda_card.dart';
 
 class QandAScreen extends StatelessWidget {
   @override

@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/tip.dart';
 import 'package:meta/meta.dart';
+
+import '../../models/tip.dart';
 
 abstract class TipState extends Equatable {
   const TipState();

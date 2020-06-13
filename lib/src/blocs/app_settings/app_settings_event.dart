@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/utils/public_type.dart';
+
+import '../../utils/public_type.dart';
 
 abstract class AppSettingsEvent extends Equatable {
   const AppSettingsEvent();

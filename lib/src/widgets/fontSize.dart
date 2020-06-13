@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
-import 'package:iqhome/src/blocs/app_settings/app_settings_event.dart';
-import 'package:iqhome/src/blocs/app_settings/app_settings_state.dart';
-import 'package:iqhome/src/utils/public_type.dart';
+
+import '../blocs/app_settings/app_settings_bloc.dart';
+import '../blocs/app_settings/app_settings_event.dart';
+import '../blocs/app_settings/app_settings_state.dart';
+import '../utils/public_type.dart';
 
 class FontSizeWidget extends StatelessWidget {
   @override

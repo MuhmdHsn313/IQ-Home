@@ -1,8 +1,7 @@
 import 'dart:convert';
 
-import 'package:iqhome/src/models/source.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
-
+import '../models/source.dart';
+import '../utils/api_reference.dart';
 import 'home_repository.dart';
 
 class SourceRepository extends HomeRepository<Source> {

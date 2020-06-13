@@ -1,8 +1,8 @@
 import 'dart:convert';
 
-import 'package:iqhome/src/models/area_statics.dart';
-import 'package:iqhome/src/repositories/home_repository.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
+import '../models/area_statics.dart';
+import '../utils/api_reference.dart';
+import 'home_repository.dart';
 
 class StaticsRepository extends HomeRepository<AreaStatics> {
   Future fetchLocal() async {

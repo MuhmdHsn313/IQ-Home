@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:iqhome/src/blocs/emergency/bloc.dart';
-import 'package:iqhome/src/widgets/emergency_number.dart';
+
+import '../blocs/emergency/bloc.dart';
+import '../widgets/emergency_number.dart';
 
 class EmergencyScreen extends StatelessWidget {
   @override

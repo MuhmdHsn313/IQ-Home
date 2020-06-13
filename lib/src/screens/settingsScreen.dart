@@ -1,15 +1,16 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:iqhome/src/blocs/app_settings/app_settings_bloc.dart';
-import 'package:iqhome/src/blocs/app_settings/bloc.dart';
-import 'package:iqhome/src/blocs/source/bloc.dart';
-import 'package:iqhome/src/screens/about_app.dart';
-import 'package:iqhome/src/screens/about_usScreen.dart';
-import 'package:iqhome/src/screens/our_sources_screen.dart';
-import 'package:iqhome/src/widgets/fontSize.dart';
-import 'package:iqhome/src/widgets/rate.dart';
-import 'package:iqhome/src/widgets/seetingsItem.dart';
+
+import '../blocs/app_settings/app_settings_bloc.dart';
+import '../blocs/app_settings/bloc.dart';
+import '../blocs/source/bloc.dart';
+import '../widgets/fontSize.dart';
+import '../widgets/rate.dart';
+import '../widgets/seetingsItem.dart';
+import 'about_app.dart';
+import 'about_usScreen.dart';
+import 'our_sources_screen.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -112,7 +113,8 @@ class SettingsScreen extends StatelessWidget {
               height: 8,
             ),
             SettingsItem(
-              title: "شارك التطبيق",
+              title: "شارك التطبيق", 
+              onTap: () {  },
             )
           ],
         ),

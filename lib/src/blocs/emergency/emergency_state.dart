@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/emergency.dart';
+
+import '../../models/emergency.dart';
 
 abstract class EmergencyState extends Equatable {
   const EmergencyState();

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/area_statics.dart';
+
+import '../models/area_statics.dart';
 
 class StateCard extends StatelessWidget {
   final AreaStatics area;

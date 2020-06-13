@@ -1,7 +1,8 @@
-import 'package:iqhome/src/models/tip.dart';
-import 'package:iqhome/src/repositories/repositories.dart';
 import 'package:bloc/bloc.dart';
+
 import './bloc.dart';
+import '../../models/tip.dart';
+import '../../repositories/repositories.dart';
 
 class TipBloc extends Bloc<TipEvent, TipState> {
   final TipRepository repository;

@@ -1,12 +1,13 @@
+import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:iqhome/src/models/news.dart';
-import 'package:iqhome/src/models/section.dart';
-import 'package:iqhome/src/utils/app_theme.dart';
-import 'package:iqhome/src/utils/string_time_generator.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/news.dart';
+import '../models/section.dart';
+import '../utils/app_theme.dart';
+import '../utils/string_time_generator.dart';
 
 class NewsScreen extends StatelessWidget {
   final News news;

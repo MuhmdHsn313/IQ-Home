@@ -1,9 +1,11 @@
 import 'dart:convert';
+
 import 'package:hive/hive.dart';
 import 'package:http/http.dart';
-import 'package:iqhome/src/models/news.dart';
-import 'package:iqhome/src/repositories/home_repository.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
+
+import '../models/news.dart';
+import '../utils/api_reference.dart';
+import 'home_repository.dart';
 
 class NewsRepository extends HomeRepository<News> {
   Stream<List<News>> streamFetch([int index, int fetch]) async* {

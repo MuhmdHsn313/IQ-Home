@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/area_statics.dart';
+
+import '../../models/area_statics.dart';
 
 abstract class StaticsState extends Equatable {
   const StaticsState();

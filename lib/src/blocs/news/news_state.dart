@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/news.dart';
+
+import '../../models/news.dart';
 
 abstract class NewsState extends Equatable {
   const NewsState();

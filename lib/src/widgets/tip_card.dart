@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/tip.dart';
-import 'package:iqhome/src/screens/tip_screen.dart';
+
+import '../models/tip.dart';
+import '../screens/tip_screen.dart';
 
 class TipCard extends StatelessWidget {
   final Tip tip;
@@ -61,7 +62,10 @@ class TipCard extends StatelessWidget {
                   tag: '${tip.id}-tip-title',
                   child: Text(
                     tip.title,
-                    style: Theme.of(context).textTheme.headline6.copyWith(fontSize: 18),
+                    style: Theme.of(context)
+                        .textTheme
+                        .headline6
+                        .copyWith(fontSize: 18),
                   ),
                 ),
               ),

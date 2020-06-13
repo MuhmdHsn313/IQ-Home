@@ -1,7 +1,8 @@
-import 'package:iqhome/src/models/qanda.dart';
-import 'package:iqhome/src/repositories/qna_repository.dart';
 import 'package:bloc/bloc.dart';
+
 import './bloc.dart';
+import '../../models/qanda.dart';
+import '../../repositories/qna_repository.dart';
 
 class QnABloc extends Bloc<QnAEvent, QnAState> {
   QandARepository _qandARepository;

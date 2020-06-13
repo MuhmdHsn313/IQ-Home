@@ -1,8 +1,10 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/models/news.dart';
-import 'package:iqhome/src/repositories/news_repository.dart';
+
 import './bloc.dart';
+import '../../models/news.dart';
+import '../../repositories/news_repository.dart';
 
 class NewsBloc extends Bloc<NewsEvent, NewsState> {
   final NewsRepository _newsRepository;

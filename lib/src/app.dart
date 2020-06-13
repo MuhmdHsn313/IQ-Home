@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:iqhome/src/blocs/app_settings/bloc.dart';
-import 'package:iqhome/src/screens/home_screen.dart';
 
+import 'blocs/app_settings/bloc.dart';
 import 'blocs/news/bloc.dart';
 import 'blocs/statics/bloc.dart';
 import 'blocs/tip/bloc.dart';
-import 'screens/in_status.dart';
+import 'screens/home_screen.dart';
 import 'utils/app_theme.dart';
 
 

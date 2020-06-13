@@ -1,7 +1,8 @@
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
-import 'package:iqhome/src/models/statics.dart';
+
+import 'statics.dart';
 
 part '../adapters/area_statics.dart';
 

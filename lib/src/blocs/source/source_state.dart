@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/source.dart';
+
+import '../../models/source.dart';
 
 abstract class SourceState extends Equatable {
   const SourceState();

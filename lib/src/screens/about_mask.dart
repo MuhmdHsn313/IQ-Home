@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/screens/notes_about_mask_screen.dart';
-import 'package:iqhome/src/widgets/details_appbar.dart';
+
+import '../widgets/details_appbar.dart';
+import 'notes_about_mask_screen.dart';
 
 class AboutMask extends StatelessWidget {
   @override

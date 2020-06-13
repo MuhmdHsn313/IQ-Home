@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/emergency.dart';
-import 'package:iqhome/src/utils/app_theme.dart';
-import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/emergency.dart';
+import '../utils/app_theme.dart';
+import '../utils/iqhome_icons.dart';
 
 class EmergencyNumber extends StatelessWidget {
   final Emergency emergency;

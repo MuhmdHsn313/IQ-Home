@@ -1,9 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/source.dart';
-import 'package:iqhome/src/utils/iqhome_icons.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/source.dart';
+import '../utils/iqhome_icons.dart';
 
 class SourceCard extends StatelessWidget {
   final Source source;

@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/repositories/emergency_repository.dart';
+
 import './bloc.dart';
+import '../../repositories/emergency_repository.dart';
 
 class EmergencyBloc extends Bloc<EmergencyEvent, EmergencyState> {
   final EmergencyRepository _emergencyRepository;
@@ -16,9 +18,9 @@ class EmergencyBloc extends Bloc<EmergencyEvent, EmergencyState> {
     EmergencyEvent event,
   ) async* {
     if (event is FetchEmergency) {
-      try{
+      try {
         yield EmergenciesLoaded(await _emergencyRepository.fetch());
-      } catch(_){
+      } catch (_) {
         yield EmergencyError(_);
       }
     }

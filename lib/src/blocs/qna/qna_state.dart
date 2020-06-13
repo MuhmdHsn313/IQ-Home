@@ -1,6 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/qanda.dart';
 import 'package:meta/meta.dart';
+
+import '../../models/qanda.dart';
 
 abstract class QnAState extends Equatable {
   const QnAState();

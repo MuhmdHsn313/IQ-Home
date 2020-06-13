@@ -1,8 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
-import 'package:iqhome/src/models/emergency.dart';
-import 'package:iqhome/src/repositories/home_repository.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
+
+import '../models/emergency.dart';
+import '../utils/api_reference.dart';
+import 'home_repository.dart';
 
 class EmergencyRepository extends HomeRepository<Emergency> {
   @override

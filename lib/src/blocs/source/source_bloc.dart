@@ -1,6 +1,8 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/repositories/source_repository.dart';
+
+import '../../repositories/source_repository.dart';
 import 'bloc.dart';
 
 class SourceBloc extends Bloc<SourceEvent, SourceState> {

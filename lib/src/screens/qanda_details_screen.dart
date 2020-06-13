@@ -2,8 +2,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
-import 'package:iqhome/src/models/qanda.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/qanda.dart';
 
 class QandADetailsScreen extends StatelessWidget {
   final QandA qandA;

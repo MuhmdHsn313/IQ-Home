@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/widgets/in_status_card.dart';
+
+import '../widgets/in_status_card.dart';
 
 
 

@@ -1,9 +1,11 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
 import 'package:hive/hive.dart';
-import 'package:iqhome/src/models/app_settings.dart';
-import 'package:iqhome/src/utils/public_type.dart';
+
 import './bloc.dart';
+import '../../models/app_settings.dart';
+import '../../utils/public_type.dart';
 
 class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
   AppSettings _appSettings;

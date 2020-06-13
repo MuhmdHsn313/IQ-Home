@@ -1,7 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/qanda.dart';
-import 'package:iqhome/src/screens/qanda_details_screen.dart';
+
+import '../models/qanda.dart';
+import '../screens/qanda_details_screen.dart';
 
 class QandACard extends StatelessWidget {
   final QandA qandA;
