@@ -2,6 +2,10 @@ class ApiReference {
   /// Include the base url of api.
   static const Url = 'https://cfi-covid19.herokuapp.com/api/';
 
+  static const statics_url = 'https://iraqgovernmentcovid19.herokuapp.com/';
+
+  static const global_url = 'https://api.covid19api.com/summary';
+
   /// Fetch news data.
   static home(int index, int fetch) => Url + 'notification/$index/$fetch';
 
@@ -31,4 +35,13 @@ class ApiReference {
 
   /// Fetch Iraq covid-19 statistics
   static const localStatistics = Url + 'statistics/local';
+
+  /// Fetch Iraq covid-19 total statistics
+  static const localTotalStatistics = Url + 'statistics/total';
+
+  /// Fetch Iraq covid-19 chart statistics
+  static const localChart = Url + 'statistics/total/line';
+
+  /// Fetch Iraq covid-19 this chart statistics
+  static thisChart(int id) => Url + 'statistics/total/line/$id';
 }

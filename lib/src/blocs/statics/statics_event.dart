@@ -8,3 +8,14 @@ abstract class StaticsEvent extends Equatable {
 }
 
 class FetchLocalStatics extends StaticsEvent {}
+class Search extends StaticsEvent {
+  final String str;
+
+  const Search(this.str);
+
+  @override
+  List<Object> get props => [str];
+
+  @override
+  String toString() => "Search: $str";
+}

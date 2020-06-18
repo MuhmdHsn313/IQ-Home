@@ -8,10 +8,10 @@ class AreaStaticsAdapter extends TypeAdapter<AreaStatics> {
       for (var i = 0; i < numOfFields; i++) reader.readByte(): reader.read(),
     };
     return AreaStatics(
-      id: fields[0] as int,
-      name: fields[1] as String,
-      today: fields[2] as Statics,
-      total: fields[3] as Statics,
+      name: fields[0] as String,
+      cases: fields[1] as String,
+      deaths: fields[2] as String,
+      recovered: fields[3] as String,
     );
   }
 
@@ -20,13 +20,13 @@ class AreaStaticsAdapter extends TypeAdapter<AreaStatics> {
     writer
       ..writeByte(3)
       ..writeByte(0)
-      ..write(obj.id)
-      ..writeByte(1)
       ..write(obj.name)
+      ..writeByte(1)
+      ..write(obj.cases)
       ..writeByte(2)
-      ..write(obj.today)
+      ..write(obj.deaths)
       ..writeByte(3)
-      ..write(obj.total);
+      ..write(obj.recovered);
   }
 
   @override

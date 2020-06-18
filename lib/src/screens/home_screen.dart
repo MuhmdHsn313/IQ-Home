@@ -1,3 +1,4 @@
+import 'package:date_time_format/date_time_format.dart';
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -10,9 +11,7 @@ import '../blocs/news/bloc.dart';
 import '../blocs/qna/bloc.dart';
 import '../blocs/statics/bloc.dart';
 import '../blocs/tip/bloc.dart';
-import '../models/area_statics.dart';
 import '../models/news.dart';
-import '../models/statics.dart';
 import '../utils/iqhome_icons.dart';
 import '../widgets/news_card.dart';
 import '../widgets/state_card.dart';
@@ -246,17 +245,16 @@ class _HomeSection extends StatelessWidget {
                       : BouncingScrollPhysics(),
                 ),
               if (internationalNews.isEmpty)
-                if (localNews.isEmpty)
-                  Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Icon(
-                        Icons.language,
-                        size: 100,
-                      ),
-                      Text('لا توجد اخبار عالمية!'),
-                    ],
-                  ),
+                Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.language,
+                      size: 100,
+                    ),
+                    Text('لا توجد اخبار عالمية!'),
+                  ],
+                ),
             ],
           );
         }
@@ -476,7 +474,7 @@ class _StatisticsSection extends StatelessWidget {
       builder: (context, state) {
         if (state is StaticsSuccessfulLoaded) {
           return ListView(
-            padding: EdgeInsets.all(8.0),
+            padding: EdgeInsets.all(10.0),
             physics: BouncingScrollPhysics(),
             children: [
               _buildMainCard(context),
@@ -486,7 +484,7 @@ class _StatisticsSection extends StatelessWidget {
               Container(
                 height: 394,
                 child: Material(
-                  elevation: 5,
+                  elevation: 2.5,
                   borderRadius: BorderRadius.circular(25),
                   color: Theme.of(context).cardColor,
                   child: Column(
@@ -529,8 +527,9 @@ class _StatisticsSection extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(15),
                                 ),
                                 child: Text(
-                                  '25\n'
-                                  'ايار',
+                                  '${DateTime.now().day}\n'
+                                  '${DateTimeFormat.format(DateTime.now(), format: ' M')}',
+                                  textAlign: TextAlign.center,
                                   style: Theme.of(context)
                                       .textTheme
                                       .subtitle1
@@ -571,7 +570,6 @@ class _StatisticsSection extends StatelessWidget {
                                   fontWeight: FontWeight.bold,
                                   fontSize: 10,
                                 ),
-//                          margin: ,
                                 getTitles: (value) {
                                   switch (value.toInt()) {
                                     case 1:
@@ -626,7 +624,7 @@ class _StatisticsSection extends StatelessWidget {
                             maxX: 12,
                             maxY: 5,
                             minY: 0,
-                            lineBarsData: linesBarData1(),
+                            lineBarsData: linesBarData1(context),
                           ),
                         ),
                       ),
@@ -678,7 +676,7 @@ class _StatisticsSection extends StatelessWidget {
     return Container(
       height: 394,
       child: Material(
-        elevation: 5,
+        elevation: 2.5,
         borderRadius: BorderRadius.circular(25),
         color: Theme.of(context).cardColor,
         child: Column(
@@ -717,8 +715,9 @@ class _StatisticsSection extends StatelessWidget {
                         borderRadius: BorderRadius.circular(15),
                       ),
                       child: Text(
-                        '25\n'
-                        'ايار',
+                        '${DateTime.now().day}\n'
+                        '${DateTimeFormat.format(DateTime.now(), format: ' M')}',
+                        textAlign: TextAlign.center,
                         style: Theme.of(context).textTheme.subtitle1.copyWith(
                               fontWeight: FontWeight.bold,
                               color: Theme.of(context).primaryColor,
@@ -740,25 +739,25 @@ class _StatisticsSection extends StatelessWidget {
                     _buildStatusCard(
                         title: 'المصابون',
                         color: Theme.of(context).errorColor,
-                        number: 1283,
+                        number: 24254,
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المتعافون',
                         color: Colors.green,
-                        number: 1283,
+                        number: 10770,
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المتوفون',
                         color: Color(0xff434343),
-                        number: 1283,
+                        number: 773,
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المصابون الحاليون',
                         color: Colors.orangeAccent,
-                        number: 1283,
+                        number: 24254 - 10770,
                         context: context,
                         onTap: () {}),
                   ],
@@ -803,7 +802,7 @@ class _StatisticsSection extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
-              '2,275',
+              '$number',
               style: Theme.of(context)
                   .textTheme
                   .headline6
@@ -834,6 +833,8 @@ class _StatisticsSection extends StatelessWidget {
               color: Theme.of(context).unselectedWidgetColor,
               borderRadius: BorderRadius.circular(15)),
           child: TextField(
+            onChanged: (str) =>
+                BlocProvider.of<StaticsBloc>(context).add(Search(str)),
             decoration: InputDecoration(
               border: InputBorder.none,
               icon: Icon(Icons.search),
@@ -846,23 +847,48 @@ class _StatisticsSection extends StatelessWidget {
             ),
           ),
         ),
-        ...List<Widget>.generate(
-          5,
-          (index) => StateCard(
-            area: AreaStatics(
-              id: -1,
-              name: 'Test',
-              today: Statics(
-                active: -1,
-                deaths: -1,
-                recovered: -1,
-              ),
-              total: Statics(
-                active: -1,
-                deaths: -1,
-                recovered: -1,
-              ),
-            ),
+        Expanded(
+          child: BlocBuilder<StaticsBloc, StaticsState>(
+            bloc: BlocProvider.of<StaticsBloc>(context),
+            builder: (context, state) {
+              if (state is StaticsSuccessfulLoaded)
+                return ListView(
+                  padding: EdgeInsets.symmetric(horizontal: 10),
+                  children: List<Widget>.generate(
+                    state.internationalStatics.length * 2,
+                        (index) {
+                      if (index % 2 == 0)
+                        return StateCard(
+                          area:
+                          state.internationalStatics[index - (index ~/ 2)],
+                        );
+                      return SizedBox(height: 5);
+                    },
+                  ),
+                );
+
+              if (state is LoadStaticsField)
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Icon(
+                      Icons.sentiment_dissatisfied,
+                      size: 75,
+                      color: Theme.of(context).disabledColor,
+                    ),
+                    Text(
+                      'خطأ في تحميل البيانات!',
+                      style: Theme.of(context).textTheme.subtitle2.copyWith(
+                        color: Theme.of(context).disabledColor,
+                      ),
+                    ),
+                  ],
+                );
+
+              return SpinKitCircle(
+                color: Theme.of(context).primaryColor,
+              );
+            },
           ),
         ),
       ],
@@ -870,7 +896,7 @@ class _StatisticsSection extends StatelessWidget {
   }
 
   /// Data
-  List<LineChartBarData> linesBarData1() {
+  List<LineChartBarData> linesBarData1(BuildContext context) {
     final LineChartBarData lineChartBarData1 = LineChartBarData(
       spots: [
         FlSpot(1, 1),
@@ -888,7 +914,14 @@ class _StatisticsSection extends StatelessWidget {
       barWidth: 2,
       isStrokeCapRound: true,
       dotData: FlDotData(
-        show: false,
+        show: true,
+        getDotPainter: (sop, dnum, data, inum) {
+          return FlDotCirclePainter(
+            color: Colors.white,
+            strokeColor: Theme.of(context).primaryColor,
+            strokeWidth: 2,
+          );
+        },
       ),
       belowBarData: BarAreaData(
         show: false,
@@ -910,7 +943,14 @@ class _StatisticsSection extends StatelessWidget {
       barWidth: 2,
       isStrokeCapRound: true,
       dotData: FlDotData(
-        show: false,
+        show: true,
+        getDotPainter: (sop, dnum, data, inum) {
+          return FlDotCirclePainter(
+            color: Colors.white,
+            strokeColor: Colors.black,
+            strokeWidth: 2,
+          );
+        },
       ),
       belowBarData: BarAreaData(show: false, colors: [
         const Color(0x00aa4cfc),
@@ -931,12 +971,20 @@ class _StatisticsSection extends StatelessWidget {
       barWidth: 2,
       isStrokeCapRound: true,
       dotData: FlDotData(
-        show: false,
+        show: true,
+        getDotPainter: (sop, dnum, data, inum) {
+          return FlDotCirclePainter(
+            color: Colors.white,
+            strokeColor: Colors.black,
+            strokeWidth: 2,
+          );
+        },
       ),
       belowBarData: BarAreaData(
         show: false,
       ),
     );
+
     return [
       lineChartBarData1,
       lineChartBarData2,

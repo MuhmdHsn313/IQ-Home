@@ -14,12 +14,12 @@ class AppTheme {
 
   static ThemeData lightTheme(double fontScale) => new ThemeData(
         primaryColor: primaryColor,
-        highlightColor: highlightColor,
+        highlightColor: highlightColor, // 74753
         fontFamily: 'Tajawal',
         canvasColor: backgroundColor,
         backgroundColor: backgroundColor,
         indicatorColor: primaryColor.withOpacity(0.99),
-        accentColor: highlightColor,
+        accentColor: Colors.white,
         disabledColor: disabledColor,
         cardColor: cardColor,
         errorColor: errorColor,
