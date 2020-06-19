@@ -9,7 +9,6 @@ import 'blocs/tip/bloc.dart';
 import 'screens/home_screen.dart';
 import 'utils/app_theme.dart';
 
-
 class IQHome extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

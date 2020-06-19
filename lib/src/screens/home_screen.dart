@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iqhome/src/blocs/concept/bloc.dart';
 import 'package:iqhome/src/blocs/media/bloc.dart';
+import 'package:iqhome/src/screens/concept_screen.dart';
 import 'package:iqhome/src/screens/media_screen.dart';
 
 import '../blocs/emergency/bloc.dart';
@@ -358,12 +360,29 @@ class _InformationSection extends StatelessWidget {
               ),
               _buildInfoCard(
                 context,
+                title: 'تصحيح المفاهيم المغلوطة',
+                svgPath: 'assets/images/concept.svg',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider<ConceptBloc>(
+                      create: (context) => ConceptBloc()..add(FetchConcepts()),
+                      child: ConceptScreen(),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              _buildInfoCard(
+                context,
                 title: 'فيدوهات عن مرض كوفيد-19',
                 svgPath: 'assets/images/youtube.svg',
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => BlocProvider(
+                    builder: (context) => BlocProvider<MediaBloc>(
                       create: (context) => MediaBloc()..add(FetchMedias()),
                       child: MediaScreen(),
                     ),

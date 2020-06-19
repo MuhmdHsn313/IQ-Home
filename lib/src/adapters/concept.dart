@@ -27,5 +27,5 @@ class ConceptAdapter extends TypeAdapter<Concept> {
   }
 
   @override
-  int get typeId => 14;
+  int get typeId => 15;
 }
