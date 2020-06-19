@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iqhome/src/blocs/media/bloc.dart';
+import 'package:iqhome/src/screens/media_screen.dart';
 
 import '../blocs/emergency/bloc.dart';
 import '../blocs/news/bloc.dart';
@@ -349,6 +351,23 @@ class _InformationSection extends StatelessWidget {
                 onTap: () => Navigator.push(
                   context,
                   MaterialPageRoute(builder: (context) => AboutMask()),
+                ),
+              ),
+              SizedBox(
+                height: 15,
+              ),
+              _buildInfoCard(
+                context,
+                title: 'فيدوهات عن مرض كوفيد-19',
+                svgPath: 'assets/images/youtube.svg',
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => BlocProvider(
+                      create: (context) => MediaBloc()..add(FetchMedias()),
+                      child: MediaScreen(),
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
@@ -856,11 +875,11 @@ class _StatisticsSection extends StatelessWidget {
                   padding: EdgeInsets.symmetric(horizontal: 10),
                   children: List<Widget>.generate(
                     state.internationalStatics.length * 2,
-                        (index) {
+                    (index) {
                       if (index % 2 == 0)
                         return StateCard(
                           area:
-                          state.internationalStatics[index - (index ~/ 2)],
+                              state.internationalStatics[index - (index ~/ 2)],
                         );
                       return SizedBox(height: 5);
                     },
@@ -879,8 +898,8 @@ class _StatisticsSection extends StatelessWidget {
                     Text(
                       'خطأ في تحميل البيانات!',
                       style: Theme.of(context).textTheme.subtitle2.copyWith(
-                        color: Theme.of(context).disabledColor,
-                      ),
+                            color: Theme.of(context).disabledColor,
+                          ),
                     ),
                   ],
                 );
