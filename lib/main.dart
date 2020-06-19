@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:hive/hive.dart';
 import 'package:iqhome/src/models/case.dart';
+import 'package:iqhome/src/models/concept.dart';
 import 'package:iqhome/src/models/media.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
@@ -37,6 +38,7 @@ void main() async {
   Hive.registerAdapter(AreaStaticsAdapter()); // 11
   Hive.registerAdapter(CaseAdapter()); // 12
   Hive.registerAdapter(AreaCaseAdapter()); // 13
+  Hive.registerAdapter(ConceptAdapter()); // 13
   Hive.registerAdapter(MediaAdapter()); // 14
   runApp(
     BlocProvider<AppSettingsBloc>(
