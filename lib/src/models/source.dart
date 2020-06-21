@@ -55,6 +55,18 @@ class Source extends Equatable {
     );
   }
 
+  Map<String, dynamic> get toMap => {
+        'id': id,
+        'name': name,
+        'logo': logo,
+        'webUrl': webUrl,
+        'twitterUrl': twitterUrl,
+        'telegramUrl': telegramUrl,
+        'facebookUrl': facebookUrl,
+        'createDateTime': createDateTime.toString(),
+        'lastChangedDateTime': lastChangedDateTime.toString(),
+      };
+
   @override
   List<Object> get props => [
         id,

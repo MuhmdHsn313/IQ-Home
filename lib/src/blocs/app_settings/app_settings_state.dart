@@ -23,7 +23,7 @@ class AppSettingsState extends Equatable {
         size: AppFontScale.Middle,
         fontScale: 1,
         isDarkMode: false,
-        isNotificationEnable: false,
+        isNotificationEnable: true,
         lang: 'ar',
       );
 

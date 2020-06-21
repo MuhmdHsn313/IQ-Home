@@ -39,6 +39,14 @@ class Section extends Equatable {
     );
   }
 
+  Map<String, dynamic> get toMap => {
+        'id': id,
+        'body': body,
+        'cover': cover,
+        'createDateTime': createDateTime.toString(),
+        'lastChangedDateTime': lastChangedDateTime.toString(),
+      };
+
   @override
   List<Object> get props =>
       [id, body, cover, createDateTime, lastChangedDateTime];

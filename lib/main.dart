@@ -4,8 +4,8 @@ import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart' as path;
 
 import 'src/app.dart';
-import 'src/blocs/app_settings/app_settings_bloc.dart';
-import 'src/blocs/app_settings/app_settings_event.dart';
+import 'src/blocs/app_settings/bloc.dart';
+import 'src/blocs/notification/notification_bloc.dart';
 import 'src/models/app_settings.dart';
 import 'src/models/area_statics.dart';
 import 'src/models/case.dart';
@@ -40,13 +40,27 @@ void main() async {
   Hive.registerAdapter(AreaCaseAdapter()); // 13
   Hive.registerAdapter(ConceptAdapter()); // 13
   Hive.registerAdapter(MediaAdapter()); // 14
+
+  final appSettingsBloc = new AppSettingsBloc();
+
   runApp(
-    BlocProvider<AppSettingsBloc>(
-      create: (context) => AppSettingsBloc()..add(FetchTheme()),
+    MultiBlocProvider(
+      providers: [
+        BlocProvider<AppSettingsBloc>(
+          create: (context) => appSettingsBloc..add(FetchTheme()),
+        ),
+        BlocProvider<NotificationBloc>(
+          create: (context) => NotificationBloc(
+            appSettingsBloc,
+            context,
+          )..add(AppStarted()),
+        ),
+      ],
       child: IQHome(),
     ),
   );
 }
+
 class SimpleBlocDelegate extends BlocDelegate {
   @override
   void onEvent(Bloc bloc, Object event) {

@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
@@ -117,6 +119,24 @@ class News extends Equatable {
       lastChangedDateTime: lastChangedDataTime ?? this.lastChangedDateTime,
     );
   }
+
+  Map<String, dynamic> get toMap => {
+        'id': id,
+        'type': type,
+        'body': body,
+        'seen': seen,
+        'cover': cover,
+        'title': title,
+        'status': status.toString().split('.').last,
+        'source': jsonEncode(source.toMap),
+        'subtitle': subtitle,
+        'sections': List<Map>.generate(
+          sections.length,
+          (index) => sections[index].toMap,
+        ),
+        'createDateTime': createDateTime.toString(),
+        'lastChangedDateTime': lastChangedDateTime.toString(),
+      };
 
   @override
   List<Object> get props => [

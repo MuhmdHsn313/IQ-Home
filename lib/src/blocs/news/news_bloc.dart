@@ -31,24 +31,27 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
     NewsEvent event,
   ) async* {
     final currentState = state;
-    if (event is LoadMoreNews && !_hasReachedMax(currentState)) {
+    if (event is LoadMoreNews &&
+        !_hasReachedMax(currentState) &&
+        currentState is NewsSuccessfulLoading) {
       if (await _newsRepository.connectionChecker.hasConnection) {
         try {
-          if (currentState is NewsSuccessfulLoading) {
-            final list =
-                await _newsRepository.fetch(currentState.news.length, 5);
-            if (list.isNotEmpty)
-              yield currentState.copyWith(
-                news: currentState.news + list,
-              );
-            else
-              yield currentState.copyWith(
-                hasReachedMax: true,
-              );
-          }
+          final list = await _newsRepository.fetch(currentState.news.length, 5);
+          if (list.isNotEmpty)
+            yield currentState.copyWith(
+              news: currentState.news + list,
+            );
+          else
+            yield currentState.copyWith(
+              hasReachedMax: true,
+            );
         } catch (_) {
           yield NewsLoadingError(_);
         }
+      } else {
+        yield currentState.copyWith(
+          hasReachedMax: true,
+        );
       }
     }
 
