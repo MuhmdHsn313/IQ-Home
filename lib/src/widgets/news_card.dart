@@ -121,7 +121,7 @@ class NewsCard extends StatelessWidget {
                     Hero(
                       tag: '${news.id}-body',
                       child: Text(
-                        news.body,
+                        news.subtitle ?? news.body,
                         maxLines: 3,
                         overflow: TextOverflow.clip,
                         style: Theme.of(context).textTheme.subtitle2,

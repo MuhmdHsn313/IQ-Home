@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:share/share.dart';
 
 import '../blocs/app_settings/app_settings_bloc.dart';
 import '../blocs/app_settings/bloc.dart';
@@ -11,6 +12,7 @@ import '../widgets/seetingsItem.dart';
 import 'about_app.dart';
 import 'about_usScreen.dart';
 import 'our_sources_screen.dart';
+import '../utils/constant.dart';
 
 class SettingsScreen extends StatelessWidget {
   @override
@@ -113,8 +115,20 @@ class SettingsScreen extends StatelessWidget {
               height: 8,
             ),
             SettingsItem(
-              title: "شارك التطبيق", 
-              onTap: () {  },
+              title: "شارك التطبيق",
+              onTap: () async {
+                final RenderBox box = context.findRenderObject();
+                return await Share.share(
+                  '''قم بمشاركة تطبيق IQ-Home مع مجتمعك ورفاقك من خلال الرابط الاتي على اندرويد وايفون:
+- الاندرويد:
+$Google_Play_Url
+- الايفون:
+$App_Store_Url''',
+                  subject: 'شارك تطبيق IQ-Home مع رفاقك!',
+                  sharePositionOrigin:
+                      box.localToGlobal(Offset.zero) & box.size,
+                );
+              },
             )
           ],
         ),

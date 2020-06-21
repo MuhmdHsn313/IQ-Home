@@ -25,13 +25,14 @@ class NewsAdapter extends TypeAdapter<News> {
       createDateTime: fields[8] as DateTime,
       lastChangedDateTime: fields[9] as DateTime,
       seen: fields[10] as bool,
+      subtitle: fields[11] as String,
     );
   }
 
   @override
   void write(BinaryWriter writer, News obj) {
     writer
-      ..writeByte(11)
+      ..writeByte(12)
       ..writeByte(0)
       ..write(obj.id)
       ..writeByte(1)
@@ -53,7 +54,9 @@ class NewsAdapter extends TypeAdapter<News> {
       ..writeByte(9)
       ..write(obj.lastChangedDateTime)
       ..writeByte(10)
-      ..write(obj.seen);
+      ..write(obj.seen)
+      ..writeByte(11)
+      ..write(obj.subtitle);
   }
 
   @override

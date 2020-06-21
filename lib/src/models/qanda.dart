@@ -1,7 +1,8 @@
+import 'dart:convert';
+
+import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
-import 'dart:convert';
-import 'package:equatable/equatable.dart';
 
 part '../adapters/qanda.dart';
 

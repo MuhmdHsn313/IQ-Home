@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/repositories/media_repository.dart';
+
 import './bloc.dart';
+import '../../repositories/media_repository.dart';
 
 class MediaBloc extends Bloc<MediaEvent, MediaState> {
   final MediaRepository _repository;

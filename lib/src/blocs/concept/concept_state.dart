@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/concept.dart';
+
+import '../../models/concept.dart';
 
 abstract class ConceptState extends Equatable {
   const ConceptState();

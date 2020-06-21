@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iqhome/src/blocs/concept/bloc.dart';
-import 'package:iqhome/src/widgets/concept_card.dart';
+
+import '../blocs/concept/bloc.dart';
+import '../widgets/concept_card.dart';
 
 class ConceptScreen extends StatelessWidget {
   @override

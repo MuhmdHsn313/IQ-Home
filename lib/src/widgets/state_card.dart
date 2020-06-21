@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 
 import '../models/area_statics.dart';
-import '../screens/in_status.dart';
 
 class StateCard extends StatelessWidget {
   final AreaStatics area;
@@ -44,7 +43,7 @@ class StateCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        area.recovered,
+                        '${int.parse(area.recovered.replaceAll(',', '')) - int.parse(area.deaths.replaceAll(',', ''))}',
                         style: Theme.of(context).textTheme.headline6.copyWith(
                               color: Color(0xffFCA206),
                             ),
@@ -59,7 +58,7 @@ class StateCard extends StatelessWidget {
                     children: [
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 2.5),
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: Theme.of(context).errorColor,
@@ -74,7 +73,7 @@ class StateCard extends StatelessWidget {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 2.5),
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: Theme.of(context).primaryColor,
@@ -89,7 +88,7 @@ class StateCard extends StatelessWidget {
                       ),
                       Container(
                         padding:
-                            EdgeInsets.symmetric(horizontal: 30, vertical: 2.5),
+                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
                         decoration: BoxDecoration(
                             border: Border.all(
                               color: Color(0xff434343),

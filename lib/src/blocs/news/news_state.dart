@@ -13,11 +13,21 @@ class NewsLoading extends NewsState {}
 
 class NewsSuccessfulLoading extends NewsState {
   final List<News> news;
+  final bool hasReachedMax;
 
-  const NewsSuccessfulLoading(this.news);
+  const NewsSuccessfulLoading(this.news, this.hasReachedMax);
+
+  NewsSuccessfulLoading copyWith({
+    List<News> news,
+    bool hasReachedMax,
+  }) =>
+      NewsSuccessfulLoading(
+        news ?? this.news,
+        hasReachedMax ?? this.hasReachedMax,
+      );
 
   @override
-  List<Object> get props => news;
+  List<Object> get props => [hasReachedMax, ...news];
 
   @override
   String toString() => "NewsSuccessfulLoading { news: ${news.length} }";

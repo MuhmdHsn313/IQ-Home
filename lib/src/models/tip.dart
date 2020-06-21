@@ -2,10 +2,11 @@
 //
 //     final tip = tipFromJson(jsonString);
 
+import 'dart:convert';
+
+import 'package:equatable/equatable.dart';
 import 'package:hive/hive.dart';
 import 'package:meta/meta.dart';
-import 'package:equatable/equatable.dart';
-import 'dart:convert';
 
 part '../adapters/tip.dart';
 

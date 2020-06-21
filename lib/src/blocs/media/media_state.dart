@@ -1,5 +1,6 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/media.dart';
+
+import '../../models/media.dart';
 
 abstract class MediaState extends Equatable {
   const MediaState();

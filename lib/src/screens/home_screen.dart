@@ -5,24 +5,24 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iqhome/src/blocs/concept/bloc.dart';
-import 'package:iqhome/src/blocs/media/bloc.dart';
-import 'package:iqhome/src/screens/concept_screen.dart';
-import 'package:iqhome/src/screens/media_screen.dart';
 
+import '../blocs/concept/bloc.dart';
 import '../blocs/emergency/bloc.dart';
+import '../blocs/media/bloc.dart';
 import '../blocs/news/bloc.dart';
 import '../blocs/qna/bloc.dart';
 import '../blocs/statics/bloc.dart';
 import '../blocs/tip/bloc.dart';
-import '../models/news.dart';
 import '../utils/iqhome_icons.dart';
+import '../widgets/bottom_loader.dart';
 import '../widgets/news_card.dart';
 import '../widgets/state_card.dart';
 import '../widgets/tip_card.dart';
 import 'about_covid19_screen.dart';
 import 'about_mask.dart';
+import 'concept_screen.dart';
 import 'emergency_screen.dart';
+import 'media_screen.dart';
 import 'qanda_screen.dart';
 import 'settingsScreen.dart';
 
@@ -33,7 +33,6 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   Widget currentScreen;
-
   @override
   void initState() {
     super.initState();
@@ -49,20 +48,21 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text('الرئيسية'),
           centerTitle: true,
           leading: IconButton(
-            icon: Icon(
-              Icons.more_horiz,
-              size: 35,
-              color: Colors.white,
-            ),
-            tooltip: 'الاعدادات',
-            onPressed: () => Navigator.push(
-              context,
-              CupertinoPageRoute(
-                builder: (context) => SettingsScreen(),
-                fullscreenDialog: true,
+              icon: Icon(
+                Icons.more_horiz,
+                size: 35,
+                color: Colors.white,
               ),
-            ),
-          ),
+              tooltip: 'الاعدادات',
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  CupertinoPageRoute(
+                    builder: (context) => SettingsScreen(),
+                    fullscreenDialog: true,
+                  ),
+                );
+              }),
           actions: [
             IconButton(
               icon: Icon(
@@ -191,17 +191,19 @@ class _HomeScreenState extends State<HomeScreen> {
 class _HomeSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final scrollController = ScrollController();
+    scrollController.addListener(() => _onScroll(context, scrollController));
     return BlocBuilder<NewsBloc, NewsState>(
       bloc: BlocProvider.of<NewsBloc>(context),
       builder: (context, state) {
         if (state is NewsSuccessfulLoading) {
-          List<News> localNews =
+          final localNews =
               state.news.where((news) => news.type == 'LOCAL').toList()
                 ..sort(
                   (c, n) =>
                       n.lastChangedDateTime.compareTo(c.lastChangedDateTime),
                 );
-          List<News> internationalNews =
+          final internationalNews =
               state.news.where((news) => news.type == 'INTERNATIONAL').toList()
                 ..sort(
                   (c, n) =>
@@ -212,16 +214,21 @@ class _HomeSection extends StatelessWidget {
             children: [
               if (localNews.isNotEmpty)
                 ListView.separated(
-                  itemBuilder: (context, index) => NewsCard(
-                    news: localNews[index],
-                  ),
+                  itemBuilder: (context, index) => index >= localNews.length
+                      ? BottomLoader()
+                      : NewsCard(
+                          news: localNews[index],
+                        ),
                   separatorBuilder: (context, index) => SizedBox(
                     height: 15,
                   ),
-                  itemCount: localNews.length,
+                  itemCount: state.hasReachedMax
+                      ? localNews.length
+                      : localNews.length + 1,
                   padding: EdgeInsets.all(8.0),
                   physics:
                       localNews.length == 1 ? null : BouncingScrollPhysics(),
+                  controller: scrollController,
                 ),
               if (localNews.isEmpty)
                 Column(
@@ -236,13 +243,18 @@ class _HomeSection extends StatelessWidget {
                 ),
               if (internationalNews.isNotEmpty)
                 ListView.separated(
-                  itemBuilder: (context, index) => NewsCard(
-                    news: internationalNews[index],
-                  ),
+                  itemBuilder: (context, index) =>
+                      index >= internationalNews.length
+                          ? BottomLoader()
+                          : NewsCard(
+                              news: internationalNews[index],
+                            ),
                   separatorBuilder: (context, index) => SizedBox(
                     height: 15,
                   ),
-                  itemCount: internationalNews.length,
+                  itemCount: state.hasReachedMax
+                      ? internationalNews.length
+                      : internationalNews.length + 1,
                   padding: EdgeInsets.all(8.0),
                   physics: internationalNews.length == 1
                       ? null
@@ -286,6 +298,14 @@ class _HomeSection extends StatelessWidget {
         );
       },
     );
+  }
+
+  void _onScroll(BuildContext context, scrollController) {
+    final maxScroll = scrollController.position.maxScrollExtent;
+    final currentScroll = scrollController.position.pixels;
+    if (maxScroll - currentScroll <= 200) {
+      BlocProvider.of<NewsBloc>(context).add(LoadMoreNews());
+    }
   }
 }
 

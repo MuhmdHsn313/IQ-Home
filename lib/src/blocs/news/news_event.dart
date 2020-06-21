@@ -11,18 +11,6 @@ abstract class NewsEvent extends Equatable {
 
 class FetchNews extends NewsEvent {}
 
-class NewFetchedNews extends NewsEvent {
-  final List<News> news;
-
-  const NewFetchedNews(this.news);
-
-  @override
-  List<Object> get props => news;
-
-  @override
-  String toString() => "NewFetchedNews { news: ${news.length} }";
-}
-
 class SeenNewNews extends NewsEvent {
   final News news;
 
@@ -35,14 +23,5 @@ class SeenNewNews extends NewsEvent {
   String toString() => "SeenNewNews: { news: ${news.title} }";
 }
 
-class NewErrorHandle extends NewsEvent {
-  final dynamic error;
+class LoadMoreNews extends NewsEvent {}
 
-  const NewErrorHandle(this.error);
-
-  @override
-  List<Object> get props => [error];
-
-  @override
-  String toString() => "NewErrorHandle { error: $error }";
-}

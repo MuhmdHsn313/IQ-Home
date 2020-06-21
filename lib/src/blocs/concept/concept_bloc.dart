@@ -1,7 +1,9 @@
 import 'dart:async';
+
 import 'package:bloc/bloc.dart';
-import 'package:iqhome/src/repositories/concept_repository.dart';
+
 import './bloc.dart';
+import '../../repositories/concept_repository.dart';
 
 class ConceptBloc extends Bloc<ConceptEvent, ConceptState> {
   final ConceptRepository _repository;

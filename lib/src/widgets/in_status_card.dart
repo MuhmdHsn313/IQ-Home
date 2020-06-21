@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:iqhome/src/models/area_statics.dart';
-import 'package:iqhome/src/screens/state_details.dart';
+
+import '../models/area_statics.dart';
+import '../screens/state_details.dart';
 
 class InStatusCard extends StatelessWidget {
   final AreaStatics statics;

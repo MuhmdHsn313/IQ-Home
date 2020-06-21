@@ -50,49 +50,52 @@ class DetailsAppBar extends StatelessWidget {
                 ],
               ),
               Expanded(
-                child: Row(
-                  children: [
-                    Expanded(
-                      flex: 1,
-                      child: SvgPicture.asset(imgPath),
-                    ),
-                    Expanded(
-                      flex: 4,
-                      child: Container(
-                        padding: const EdgeInsets.all(10.0),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.spaceAround,
-                          children: [
-                            Text(
-                              subtitle,
-                              style: Theme.of(context).textTheme.subtitle2,
-                            ),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.spaceAround,
-                              children: [
-                                Hero(
-                                  tag: title,
-                                  child: Text(
-                                    screenName,
-                                    style: Theme.of(context).textTheme.headline6,
+                child: Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 5),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        flex: 1,
+                        child: SvgPicture.asset(imgPath),
+                      ),
+                      Expanded(
+                        flex: 4,
+                        child: Container(
+                          padding: const EdgeInsets.all(10.0),
+                          child: Column(
+                            mainAxisAlignment: MainAxisAlignment.spaceAround,
+                            children: [
+                              Text(
+                                subtitle,
+                                style: Theme.of(context).textTheme.subtitle2,
+                              ),
+                              Row(
+                                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                                children: [
+                                  Hero(
+                                    tag: title,
+                                    child: Text(
+                                      screenName,
+                                      style: Theme.of(context).textTheme.headline6,
+                                    ),
                                   ),
-                                ),
-                                Hero(
-                                  tag: svgPath,
-                                  child: SvgPicture.asset(
-                                    svgPath,
-                                    height: 20,
-                                    width: 20,
-                                    color: Theme.of(context).primaryColor,
+                                  Hero(
+                                    tag: svgPath,
+                                    child: SvgPicture.asset(
+                                      svgPath,
+                                      height: 20,
+                                      width: 20,
+                                      color: Theme.of(context).primaryColor,
+                                    ),
                                   ),
-                                ),
-                              ],
-                            ),
-                          ],
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ],

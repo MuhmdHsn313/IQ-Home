@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:bloc/bloc.dart';
+import 'package:rxdart/rxdart.dart';
 
 import './bloc.dart';
 import '../../models/news.dart';
@@ -12,33 +13,53 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
   NewsBloc() : _newsRepository = new NewsRepository();
 
   @override
+  Stream<Transition<NewsEvent, NewsState>> transformEvents(
+    Stream<NewsEvent> events,
+    TransitionFunction<NewsEvent, NewsState> transition,
+  ) {
+    return super.transformEvents(
+      events.debounceTime(const Duration(milliseconds: 500)),
+      transition,
+    );
+  }
+
+  @override
   NewsState get initialState => NewsLoading();
 
   @override
   Stream<NewsState> mapEventToState(
     NewsEvent event,
   ) async* {
-    if (event is FetchNews) yield* _fetchNewsToState();
-    if (event is SeenNewNews) yield* _seenNewNewsToState(event);
-    if (event is NewFetchedNews) {
-      yield NewsSuccessfulLoading(event.news);
+    final currentState = state;
+    if (event is LoadMoreNews && !_hasReachedMax(currentState)) {
+      if (await _newsRepository.connectionChecker.hasConnection) {
+        try {
+          if (currentState is NewsSuccessfulLoading) {
+            final list =
+                await _newsRepository.fetch(currentState.news.length, 5);
+            if (list.isNotEmpty)
+              yield currentState.copyWith(
+                news: currentState.news + list,
+              );
+            else
+              yield currentState.copyWith(
+                hasReachedMax: true,
+              );
+          }
+        } catch (_) {
+          yield NewsLoadingError(_);
+        }
+      }
     }
-    if (event is NewErrorHandle) {
-      yield NewsLoadingError(event.error);
-    }
-  }
 
-  Stream<NewsState> _fetchNewsToState() async* {
-    try {
-      _newsRepository.streamFetch().listen(
-            (news) => add(
-              NewFetchedNews(news),
-            ),
-            onError: (_) => add(NewErrorHandle(_)),
-          );
-    } catch (_) {
-      yield NewsLoadingError(_);
+    if (event is FetchNews) {
+      try {
+        yield NewsSuccessfulLoading(await _newsRepository.fetch(0, 50), false);
+      } catch (_) {
+        yield NewsLoadingError(_);
+      }
     }
+    if (event is SeenNewNews) yield* _seenNewNewsToState(event);
   }
 
   Stream<NewsState> _seenNewNewsToState(SeenNewNews event) async* {
@@ -52,9 +73,15 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           return newsEvent;
         },
       ).toList();
-      yield NewsSuccessfulLoading(news);
+      yield currentState.copyWith(
+        news: news,
+        hasReachedMax: currentState.hasReachedMax,
+      );
     }
   }
+
+  bool _hasReachedMax(NewsState state) =>
+      state is NewsSuccessfulLoading && state.hasReachedMax;
 
   @override
   Future<void> close() {

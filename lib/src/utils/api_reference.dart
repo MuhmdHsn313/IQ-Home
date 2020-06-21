@@ -1,4 +1,7 @@
 class ApiReference {
+
+  static const channel_url = 'https://cfi-covid19.herokuapp.com';
+
   /// Include the base url of api.
   static const Url = 'https://cfi-covid19.herokuapp.com/api/';
 

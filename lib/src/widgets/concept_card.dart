@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:iqhome/src/models/concept.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../models/concept.dart';
 
 class ConceptCard extends StatelessWidget {
   final Concept concept;

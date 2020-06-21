@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:iqhome/src/models/case.dart';
 
 import '../../models/area_statics.dart';
 

@@ -23,57 +23,63 @@ class NewsScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         child: SafeArea(
-          child: Container(
-            height: 110,
-            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Hero(
-                  tag: '${news.id}-source',
-                  child: Row(
-                    children: [
-                      CircleAvatar(
-                        radius: 25.0,
-                        backgroundImage: CachedNetworkImageProvider(
-                          news.source.logo,
-                        ),
-                      ),
-                      Expanded(
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0),
-                          child: Text(
-                            news.source.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .subtitle1
-                                .copyWith(fontSize: 11),
+          child: GestureDetector(
+            onVerticalDragUpdate: (_) => Navigator.pop(context),
+            onHorizontalDragUpdate: (_) => Navigator.pop(context),
+            child: Container(
+              height: 110,
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Hero(
+                    tag: '${news.id}-source',
+                    child: Row(
+                      children: [
+                        CircleAvatar(
+                          radius: 25.0,
+                          backgroundImage: CachedNetworkImageProvider(
+                            news.source.logo,
                           ),
                         ),
-                      ),
-                      Text(
-                        StringTimeGenerator.get(news.lastChangedDateTime),
-                        style: Theme.of(context)
-                            .textTheme
-                            .subtitle2
-                            .copyWith(fontSize: 11),
-                      ),
-                    ],
+                        Expanded(
+                          child: Padding(
+                            padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                            child: Text(
+                              news.source.name,
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .subtitle1
+                                  .copyWith(fontSize: 11),
+                            ),
+                          ),
+                        ),
+                        Text(
+                          StringTimeGenerator.get(news.lastChangedDateTime),
+                          style: Theme.of(context)
+                              .textTheme
+                              .subtitle2
+                              .copyWith(fontSize: 11),
+                        ),
+                      ],
+                    ),
                   ),
-                ),
-                Hero(
-                  tag: '${news.id}-title',
-                  child: Text(
-                    news.title,
-                    style: Theme.of(context)
-                        .textTheme
-                        .headline6
-                        .copyWith(fontSize: 15),
+                  Hero(
+                    tag: '${news.id}-title',
+                    child: Text(
+                      news.title,
+                      style: Theme.of(context)
+                          .textTheme
+                          .headline6
+                          .copyWith(fontSize: 15),
+                    ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
           ),
         ),

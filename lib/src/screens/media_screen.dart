@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
-import 'package:iqhome/src/blocs/media/bloc.dart';
-import 'package:iqhome/src/widgets/media_card.dart';
+
+import '../blocs/media/bloc.dart';
+import '../widgets/media_card.dart';
 
 class MediaScreen extends StatelessWidget {
   @override
@@ -47,7 +48,7 @@ class MediaScreen extends StatelessWidget {
             );
 
           return SpinKitCircle(
-            color: Theme.of(context).errorColor,
+            color: Theme.of(context).primaryColor,
           );
         },
       ),

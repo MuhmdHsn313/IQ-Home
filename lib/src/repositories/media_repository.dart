@@ -1,9 +1,10 @@
 import 'dart:convert';
 
 import 'package:http/http.dart';
-import 'package:iqhome/src/models/media.dart';
-import 'package:iqhome/src/repositories/home_repository.dart';
-import 'package:iqhome/src/utils/api_reference.dart';
+
+import '../models/media.dart';
+import '../utils/api_reference.dart';
+import 'home_repository.dart';
 
 class MediaRepository extends HomeRepository<Media> {
   @override

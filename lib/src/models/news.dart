@@ -32,6 +32,8 @@ class News extends Equatable {
   final DateTime lastChangedDateTime;
   @HiveField(10)
   final bool seen;
+  @HiveField(11)
+  final String subtitle;
 
   const News({
     @required this.id,
@@ -44,6 +46,7 @@ class News extends Equatable {
     @required this.sections,
     @required this.createDateTime,
     @required this.lastChangedDateTime,
+    @required this.subtitle,
     this.seen: false,
   })  : assert(id != null),
         assert(type != null),
@@ -73,6 +76,7 @@ class News extends Equatable {
       body: data['body'],
       cover: data['cover'],
       title: data['title'],
+      subtitle: data['subtitle'],
       status: status,
       source: Source.fromJson(data['source']),
       sections: List<Section>.generate(
@@ -90,6 +94,7 @@ class News extends Equatable {
     String type,
     String body,
     String cover,
+    String subtitle,
     NewsStatus status,
     Source source,
     List<Section> sections,
@@ -106,6 +111,7 @@ class News extends Equatable {
       title: title ?? this.title,
       status: status ?? this.status,
       source: source ?? this.source,
+      subtitle: subtitle ?? this.subtitle,
       sections: sections ?? this.sections,
       createDateTime: createDateTime ?? this.createDateTime,
       lastChangedDateTime: lastChangedDataTime ?? this.lastChangedDateTime,
@@ -122,6 +128,7 @@ class News extends Equatable {
         title,
         status,
         source,
+        subtitle,
         createDateTime,
         lastChangedDateTime,
       ]..addAll(sections);
