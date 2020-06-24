@@ -19,7 +19,7 @@ class NewsRepository extends HomeRepository<News> {
         return box.values.toList();
 
       final List list = json.decode(response.body);
-
+      if (list.isEmpty) return [];
       List<News> newsList = List<News>.generate(
         list.length,
         (index) => News.fromJson(list[index]),
@@ -48,7 +48,7 @@ class NewsRepository extends HomeRepository<News> {
       } else if (newsList.length < box.values.length) {
         for (int i = 0; i < box.values.length; i++) {
           if (i < newsList.length) {
-            if (box.values.elementAt(i).id == newsList[i].id) {
+            if (box.values.elementAt(i) == newsList[i]) {
               await box.put(
                 newsList[i].id,
                 newsList[i].copyWith(
@@ -57,6 +57,11 @@ class NewsRepository extends HomeRepository<News> {
               );
               newsList[i] = newsList[i].copyWith(
                 seen: box.values.elementAt(i).seen,
+              );
+            } else {
+              await box.put(
+                newsList[i].id,
+                newsList[i],
               );
             }
           }
@@ -76,7 +81,7 @@ class NewsRepository extends HomeRepository<News> {
           }
         }
       }
-      return newsList;
+      return box.values.toList();
     } else {
       return box.values.toList();
     }

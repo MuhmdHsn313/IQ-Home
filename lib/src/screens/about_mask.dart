@@ -41,16 +41,14 @@ class AboutMask extends StatelessWidget {
               ),
               child: ListTile(
                 title: Text('ملاحظات عن الكمامة'),
-                trailing: IconButton(
-                  icon: Icon(
-                    Icons.arrow_forward_ios,
-                    color: Theme.of(context).primaryColor,
-                  ),
-                  onPressed: () => Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => NotesAboutMaskScreen(),
-                    ),
+                trailing: Icon(
+                  Icons.arrow_forward_ios,
+                  color: Theme.of(context).primaryColor,
+                ),
+                onTap: () => Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => NotesAboutMaskScreen(),
                   ),
                 ),
               ),

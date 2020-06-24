@@ -57,47 +57,62 @@ class StateCard extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     children: [
                       Container(
+                        alignment: Alignment.center,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
+                            EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).errorColor,
-                            ),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Text(
-                          area.recovered,
-                          style: TextStyle(
+                          border: Border.all(
                             color: Theme.of(context).errorColor,
                           ),
+                          borderRadius: BorderRadius.circular(50),
                         ),
-                      ),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
-                        decoration: BoxDecoration(
-                            border: Border.all(
-                              color: Theme.of(context).primaryColor,
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            area.recovered,
+                            style: TextStyle(
+                              color: Theme.of(context).errorColor,
                             ),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Text(
-                          area.cases,
-                          style: TextStyle(
-                            color: Theme.of(context).primaryColor,
                           ),
                         ),
                       ),
                       Container(
+                        alignment: Alignment.center,
                         padding:
-                            EdgeInsets.symmetric(horizontal: 20, vertical: 2.5),
+                            EdgeInsets.symmetric(horizontal: 20),
                         decoration: BoxDecoration(
-                            border: Border.all(
+                          border: Border.all(
+                            color: Theme.of(context).primaryColor,
+                          ),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            area.cases,
+                            style: TextStyle(
+                              color: Theme.of(context).primaryColor,
+                            ),
+                          ),
+                        ),
+                      ),
+                      Container(
+                        alignment: Alignment.center,
+                        padding:
+                            EdgeInsets.symmetric(horizontal: 20),
+                        decoration: BoxDecoration(
+                          border: Border.all(
+                            color: Color(0xff434343),
+                          ),
+                          borderRadius: BorderRadius.circular(50),
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text(
+                            area.deaths,
+                            style: TextStyle(
                               color: Color(0xff434343),
                             ),
-                            borderRadius: BorderRadius.circular(50)),
-                        child: Text(
-                          area.deaths,
-                          style: TextStyle(
-                            color: Color(0xff434343),
                           ),
                         ),
                       ),

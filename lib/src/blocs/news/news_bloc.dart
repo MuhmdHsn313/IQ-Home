@@ -39,7 +39,7 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
           final list = await _newsRepository.fetch(currentState.news.length, 5);
           if (list.isNotEmpty)
             yield currentState.copyWith(
-              news: currentState.news + list,
+              news: list,
             );
           else
             yield currentState.copyWith(

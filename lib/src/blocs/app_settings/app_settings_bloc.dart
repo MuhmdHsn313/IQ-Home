@@ -25,7 +25,7 @@ class AppSettingsBloc extends Bloc<AppSettingsEvent, AppSettingsState> {
           lang: 'ar',
           scale: AppFontScale.Middle,
           isDarkMode: false,
-          isNotificationEnable: false,
+          isNotificationEnable: true,
         );
         _settingsBox.put(1, _appSettings);
       } else {

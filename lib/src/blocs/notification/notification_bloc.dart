@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 
+import 'package:just_audio/just_audio.dart';
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:flutter/material.dart';
@@ -28,7 +29,7 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
     _localNotifications = FlutterLocalNotificationsPlugin();
     _localNotifications.initialize(
       InitializationSettings(
-        AndroidInitializationSettings('mipmap/ic_launcher'),
+        AndroidInitializationSettings('drawable/ic_launcher'),
         IOSInitializationSettings(),
       ),
       onSelectNotification: (_) async {
@@ -74,6 +75,9 @@ class NotificationBloc extends Bloc<NotificationEvent, NotificationState> {
   }
 
   void newsNotification(News news) async {
+    final player = AudioPlayer();
+    await player.setAsset('assets/files/slow_spring_board.mp3');
+    await player.play();
     final platform = MethodChannel('crossingthestreams.io/resourceResolver');
     String groupKey = 'org.codeforiraq.iqhome.WORK_EMAIL';
     String groupChannelId = 'grouped channel id';

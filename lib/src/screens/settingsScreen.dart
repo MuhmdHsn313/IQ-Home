@@ -66,8 +66,9 @@ class SettingsScreen extends StatelessWidget {
                   trailing: CupertinoSwitch(
                     value: state.isNotificationEnable,
                     onChanged: (change) =>
-                        BlocProvider.of<AppSettingsBloc>(context)
-                            .add(ChangeNotificationState(change)),
+                        BlocProvider.of<AppSettingsBloc>(context).add(
+                      ChangeNotificationState(change),
+                    ),
                   ),
                 ),
               ),

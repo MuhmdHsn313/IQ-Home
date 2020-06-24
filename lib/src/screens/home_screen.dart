@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:iqhome/src/models/area_statics.dart';
 
 import '../blocs/concept/bloc.dart';
 import '../blocs/emergency/bloc.dart';
@@ -48,21 +49,22 @@ class _HomeScreenState extends State<HomeScreen> {
           title: Text('الرئيسية'),
           centerTitle: true,
           leading: IconButton(
-              icon: Icon(
-                Icons.more_horiz,
-                size: 35,
-                color: Colors.white,
-              ),
-              tooltip: 'الاعدادات',
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  CupertinoPageRoute(
-                    builder: (context) => SettingsScreen(),
-                    fullscreenDialog: true,
-                  ),
-                );
-              }),
+            icon: Icon(
+              Icons.more_horiz,
+              size: 35,
+              color: Colors.white,
+            ),
+            tooltip: 'الاعدادات',
+            onPressed: () {
+              Navigator.push(
+                context,
+                CupertinoPageRoute(
+                  builder: (context) => SettingsScreen(),
+                  fullscreenDialog: true,
+                ),
+              );
+            },
+          ),
           actions: [
             IconButton(
               icon: Icon(
@@ -422,6 +424,9 @@ class _InformationSection extends StatelessWidget {
                   return SizedBox(height: 15);
                 },
               ),
+              SizedBox(
+                height: 40,
+              ),
             ],
           );
 
@@ -535,7 +540,7 @@ class _StatisticsSection extends StatelessWidget {
             padding: EdgeInsets.all(10.0),
             physics: BouncingScrollPhysics(),
             children: [
-              _buildMainCard(context),
+              _buildMainCard(context, state.localStatics[1]),
               SizedBox(
                 height: 10,
               ),
@@ -678,8 +683,8 @@ class _StatisticsSection extends StatelessWidget {
                                 ),
                               ),
                             ),
-                            minX: 2.5,
-                            maxX: 12,
+                            minX: 1,
+                            maxX: 13,
                             maxY: 5,
                             minY: 0,
                             lineBarsData: linesBarData1(context),
@@ -730,7 +735,7 @@ class _StatisticsSection extends StatelessWidget {
     );
   }
 
-  Widget _buildMainCard(BuildContext context) {
+  Widget _buildMainCard(BuildContext context, AreaStatics iraq) {
     return Container(
       height: 394,
       child: Material(
@@ -797,25 +802,26 @@ class _StatisticsSection extends StatelessWidget {
                     _buildStatusCard(
                         title: 'المصابون',
                         color: Theme.of(context).errorColor,
-                        number: 24254,
+                        number: int.parse(iraq.cases.replaceAll(',', '')),
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المتعافون',
                         color: Colors.green,
-                        number: 10770,
+                        number: int.parse(iraq.recovered.replaceAll(',', '')),
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المتوفون',
                         color: Color(0xff434343),
-                        number: 773,
+                        number: int.parse(iraq.deaths.replaceAll(',', '')),
                         context: context,
                         onTap: () {}),
                     _buildStatusCard(
                         title: 'المصابون الحاليون',
                         color: Colors.orangeAccent,
-                        number: 24254 - 10770,
+                        number: int.parse(iraq.cases.replaceAll(',', '')) -
+                            int.parse(iraq.deaths.replaceAll(',', '')),
                         context: context,
                         onTap: () {}),
                   ],
