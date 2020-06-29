@@ -47,17 +47,15 @@ class EmergencyNumber extends StatelessWidget {
                 ),
               ),
               Padding(
-                padding: const EdgeInsets.only(right: 3),
-                child: Expanded(
-                  flex: 1,
-                  child: Text(
+                padding: const EdgeInsets.only(right: 1),
+               child:  Text(
                     emergency.contact,
                     style: Theme.of(context)
                         .textTheme
                         .subtitle1
                         .copyWith(color: AppTheme.textColor2),
                   ),
-                ),
+              
               ),
             ],
           ),
