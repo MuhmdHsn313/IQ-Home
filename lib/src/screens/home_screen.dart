@@ -135,8 +135,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(25),
                     boxShadow: [
                       BoxShadow(
-                        color: Theme.of(context).disabledColor,
-                        blurRadius: 10,
+                        color: Theme.of(context).disabledColor.withOpacity(0.7),
+                        blurRadius: 8,
                         offset: Offset(0, 3),
                       ),
                     ],
@@ -582,7 +582,7 @@ class _StatisticsSection extends StatelessWidget {
                               ),
                               Container(
                                 margin: EdgeInsets.symmetric(
-                                    horizontal: 5, vertical: 10),
+                                    horizontal: 5, vertical: 3),
                                 padding: EdgeInsets.symmetric(horizontal: 15),
                                 alignment: Alignment.center,
                                 decoration: BoxDecoration(
@@ -737,7 +737,7 @@ class _StatisticsSection extends StatelessWidget {
 
   Widget _buildMainCard(BuildContext context, AreaStatics iraq) {
     return Container(
-      height: 394,
+      height: 410,
       child: Material(
         elevation: 2.5,
         borderRadius: BorderRadius.circular(25),
@@ -770,7 +770,7 @@ class _StatisticsSection extends StatelessWidget {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 10),
+                      margin: EdgeInsets.symmetric(horizontal: 5, vertical: 3),
                       padding: EdgeInsets.symmetric(horizontal: 15),
                       alignment: Alignment.center,
                       decoration: BoxDecoration(
@@ -842,7 +842,7 @@ class _StatisticsSection extends StatelessWidget {
     VoidCallback onTap,
   }) {
     return Container(
-      height: 60,
+      // height: 60,
       alignment: Alignment.center,
       margin: EdgeInsets.all(5.0),
       decoration: BoxDecoration(
@@ -875,10 +875,10 @@ class _StatisticsSection extends StatelessWidget {
             SizedBox(
               width: 10,
             ),
-            Icon(
-              Icons.arrow_forward_ios,
-              color: Colors.white,
-            ),
+            // Icon(
+            //   Icons.arrow_forward_ios,
+            //   color: Colors.white,
+            // ),
           ],
         ),
         onTap: onTap,

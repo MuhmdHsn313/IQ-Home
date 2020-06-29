@@ -40,7 +40,7 @@ class AppTheme {
             fontWeight: FontWeight.bold,
           ),
           subtitle1: TextStyle(
-            fontSize: 17 * fontScale,
+            fontSize: 16 * fontScale,
             color: primaryColor,
             fontWeight: FontWeight.normal,
           ),

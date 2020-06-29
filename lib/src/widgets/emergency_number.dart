@@ -33,7 +33,7 @@ class EmergencyNumber extends StatelessWidget {
                 child: IconButton(
                   tooltip: 'إضافة الى جهات الاتصال',
                   icon: Icon(
-                    IQHomeIcons.arrow_down_circle,
+                    Icons.call,
                     color: Theme.of(context).errorColor,
                   ),
                   onPressed: () async {
@@ -46,14 +46,17 @@ class EmergencyNumber extends StatelessWidget {
                   },
                 ),
               ),
-              Expanded(
-                flex: 1,
-                child: Text(
-                  emergency.contact,
-                  style: Theme.of(context)
-                      .textTheme
-                      .subtitle1
-                      .copyWith(color: AppTheme.textColor2),
+              Padding(
+                padding: const EdgeInsets.only(right: 3),
+                child: Expanded(
+                  flex: 1,
+                  child: Text(
+                    emergency.contact,
+                    style: Theme.of(context)
+                        .textTheme
+                        .subtitle1
+                        .copyWith(color: AppTheme.textColor2),
+                  ),
                 ),
               ),
             ],
