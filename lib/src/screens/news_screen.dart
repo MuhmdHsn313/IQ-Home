@@ -27,7 +27,7 @@ class NewsScreen extends StatelessWidget {
             onVerticalDragUpdate: (_) => Navigator.pop(context),
             onHorizontalDragUpdate: (_) => Navigator.pop(context),
             child: Container(
-              height: 110,
+              // height: 120,
               padding:
                   const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
               child: Column(
@@ -78,6 +78,7 @@ class NewsScreen extends StatelessWidget {
                           .copyWith(fontSize: 15),
                     ),
                   ),
+                  
                 ],
               ),
             ),

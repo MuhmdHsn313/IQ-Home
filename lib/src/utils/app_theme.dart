@@ -61,27 +61,38 @@ class AppTheme {
       backgroundColor: Colors.black,
       scaffoldBackgroundColor: Colors.black,
       cardColor: Color(0xff080b0b),
+       brightness: Brightness.dark,
+
+      
+      
+      
     );
   }
 
 //  static ThemeData dark(double fontScale) {
 //    return ThemeData(
-//      fontFamily: 'Tajawal',
-//      brightness: Brightness.dark,
-//      primaryTextTheme: TextTheme(
-//        bodyText1: TextStyle(
-//          fontSize: 20 * fontScale,
-//        ),
+//      appBarTheme: AppBarTheme(
+//        color: Colors.black
 //      ),
+//      backgroundColor: Colors.black,
+//      scaffoldBackgroundColor: Colors.black,
+//      cardColor: Color(0xff080b0b),
+//      fontFamily: 'Tajawal',
+//     //  brightness: Brightness.dark,
+//     //  primaryTextTheme: TextTheme(
+//     //    bodyText1: TextStyle(
+//     //      fontSize: 20 * fontScale,
+//     //    ),
+//     //  ),
 //      textTheme: TextTheme(
-//        headline6: TextStyle(
-//          fontSize: 20 * fontScale,
-//          fontWeight: FontWeight.bold,
-//        ),
-//        subtitle1: TextStyle(
-//          fontSize: 17 * fontScale,
-//          fontWeight: FontWeight.normal,
-//        ),
+//       //  headline6: TextStyle(
+//       //    fontSize: 20 * fontScale,
+//       //    fontWeight: FontWeight.bold,
+//       //  ),
+//       //  subtitle1: TextStyle(
+//       //    fontSize: 17 * fontScale,
+//       //    fontWeight: FontWeight.normal,
+//       //  ),
 //        subtitle2: TextStyle(
 //          fontSize: 13 * fontScale,
 //          height: 1.5,

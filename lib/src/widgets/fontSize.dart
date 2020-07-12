@@ -21,6 +21,7 @@ class FontSizeWidget extends StatelessWidget {
                   style: Theme.of(context).textTheme.subtitle1),
             ),
             Container(
+              
               height: 50,
               color: Theme.of(context).cardColor,
               alignment: Alignment.center,
@@ -84,7 +85,7 @@ class SelectFontSize extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       height: 31,
-      width: 95,
+      width: 90,
       alignment: Alignment.center,
       decoration: BoxDecoration(
         border: Border.all(
