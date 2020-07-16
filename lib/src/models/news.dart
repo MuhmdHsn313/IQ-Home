@@ -85,8 +85,9 @@ class News extends Equatable {
         data['sections'].length,
         (index) => Section.fromJson(data['sections'][index]),
       ),
-      createDateTime: DateTime.parse(data['createDateTime']),
-      lastChangedDateTime: DateTime.parse(data['lastChangedDateTime']),
+      createDateTime: DateTime.parse(data['createDateTime']).toLocal(),
+      lastChangedDateTime:
+          DateTime.parse(data['lastChangedDateTime']).toLocal(),
     );
   }
 

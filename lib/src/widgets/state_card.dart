@@ -43,7 +43,7 @@ class StateCard extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        '${int.parse(area.recovered.replaceAll(',', '')) - int.parse(area.deaths.replaceAll(',', ''))}',
+                       ! area.recovered.contains("N")? '${int.parse(area.recovered.replaceAll(',', '')) - int.parse(area.deaths.replaceAll(',', ''))}':"No Data",
                         style: Theme.of(context).textTheme.headline6.copyWith(
                               color: Color(0xffFCA206),
                             ),
@@ -69,7 +69,7 @@ class StateCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(
-                            area.recovered,
+                            area.cases,
                             style: TextStyle(
                               color: Theme.of(context).errorColor,
                             ),
@@ -89,7 +89,7 @@ class StateCard extends StatelessWidget {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 8),
                           child: Text(
-                            area.cases,
+                            area.recovered,
                             style: TextStyle(
                               color: Theme.of(context).primaryColor,
                             ),

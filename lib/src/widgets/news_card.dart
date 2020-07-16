@@ -16,6 +16,9 @@ class NewsCard extends StatelessWidget {
   })  : assert(news != null),
         super(key: key);
 
+
+        
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -108,6 +111,7 @@ class NewsCard extends StatelessWidget {
                         ],
                       ),
                     ),
+                    SizedBox(height: 3,),
                     Hero(
                       tag: '${news.id}-title',
                       child: Text(

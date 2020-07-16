@@ -212,6 +212,13 @@ class _HomeSection extends StatelessWidget {
                       n.lastChangedDateTime.compareTo(c.lastChangedDateTime),
                 );
 
+                print(localNews.length);
+                if(localNews.length <=3){
+
+                  BlocProvider.of<NewsBloc>(context).add(LoadMoreNews());
+
+                }
+
           return TabBarView(
             children: [
               if (localNews.isNotEmpty)
@@ -608,86 +615,90 @@ class _StatisticsSection extends StatelessWidget {
                       ),
                       Expanded(
                         flex: 4,
-                        child: LineChart(
-                          LineChartData(
-                            lineTouchData: LineTouchData(
-                              touchTooltipData: LineTouchTooltipData(
-                                tooltipBgColor:
-                                    Colors.blueGrey.withOpacity(0.8),
+                        child: Center(
+                          child: LineChart(
+                            LineChartData(
+                              lineTouchData: LineTouchData(
+                                touchTooltipData: LineTouchTooltipData(
+                                  tooltipBgColor:
+                                      Colors.blueGrey.withOpacity(0.8),
+                                ),
+                                handleBuiltInTouches: true,
                               ),
-                              handleBuiltInTouches: true,
-                            ),
-                            gridData: FlGridData(
-                              show: false,
-                            ),
-                            titlesData: FlTitlesData(
-                              leftTitles: SideTitles(
-                                showTitles: false,
+                              gridData: FlGridData(
+                                show: false,
                               ),
-                              bottomTitles: SideTitles(
-                                showTitles: true,
-                                reservedSize: 30,
-                                interval: 1,
-                                textStyle: TextStyle(
-                                  color: Theme.of(context).errorColor,
-                                  fontWeight: FontWeight.bold,
-                                  fontSize: 10,
+                              titlesData: FlTitlesData(
+                                leftTitles: SideTitles(
+                                  showTitles: false,
                                 ),
-                                getTitles: (value) {
-                                  switch (value.toInt()) {
-                                    case 1:
-                                      return 'Jan';
-                                    case 2:
-                                      return 'Feb';
-                                    case 3:
-                                      return 'Mar';
-                                    case 4:
-                                      return 'Apr';
-                                    case 5:
-                                      return 'May';
-                                    case 6:
-                                      return 'Jun';
-                                    case 7:
-                                      return 'Jul';
-                                    case 8:
-                                      return 'Aug';
-                                    case 9:
-                                      return 'Sep';
-                                    case 10:
-                                      return 'Oct';
-                                    case 11:
-                                      return 'Nov';
-                                    case 12:
-                                      return 'DEC';
-                                  }
-                                  return '';
-                                },
-                              ),
-                            ),
-                            borderData: FlBorderData(
-                              show: true,
-                              border: Border(
-                                bottom: BorderSide(
-                                  color:
-                                      Theme.of(context).unselectedWidgetColor,
-                                  width: 1,
-                                ),
-                                left: BorderSide(
-                                  color: Colors.transparent,
-                                ),
-                                right: BorderSide(
-                                  color: Colors.transparent,
-                                ),
-                                top: BorderSide(
-                                  color: Colors.transparent,
+                                bottomTitles: SideTitles(
+                                  showTitles: true,
+                                  reservedSize: 30,
+                                  interval: 1,
+                                  textStyle: TextStyle(
+                                    color: Theme.of(context).errorColor,
+                                    fontWeight: FontWeight.bold,
+                                    fontSize: 10,
+                                  ),
+                                  getTitles: (value) {
+                                    switch (value.toInt()) {
+                                      case 1:
+                                        return 'Jan';
+                                      case 2:
+                                        return 'Feb';
+                                      case 3:
+                                        return 'Mar';
+                                      case 4:
+                                        return 'Apr';
+                                      case 5:
+                                        return 'May';
+                                      case 6:
+                                        return 'Jun';
+                                      case 7:
+                                        return 'Jul';
+                                      case 8:
+                                        return 'Aug';
+                                      case 9:
+                                        return 'Sep';
+                                      case 10:
+                                        return 'Oct';
+                                      case 11:
+                                        return 'Nov';
+                                      case 12:
+                                        return 'DEC';
+                                    }
+                                    return '';
+                                  },
                                 ),
                               ),
+                              borderData: FlBorderData(
+                                show: true,
+                                border: Border(
+                                  
+                                  bottom: BorderSide(
+                                    color:
+                                        Theme.of(context).unselectedWidgetColor,
+                                    width: 1,
+                                  ),
+                                  left: BorderSide(
+                                    color: Colors.transparent,
+                                  ),
+                                  right: BorderSide(
+                                    color: Colors.transparent,
+                                  ),
+                                  top: BorderSide(
+                                    color: Colors.transparent,
+                                  ),
+                                ),
+                              ),
+
+                              minX: 1,
+                              maxX: 12,
+                              maxY: 5,
+                              minY: 0,
+                              lineBarsData: linesBarData1(context),
                             ),
-                            minX: 1,
-                            maxX: 13,
-                            maxY: 5,
-                            minY: 0,
-                            lineBarsData: linesBarData1(context),
                           ),
                         ),
                       ),
@@ -700,9 +711,9 @@ class _StatisticsSection extends StatelessWidget {
                 state.localStatics.length * 2,
                 (index) {
                   if (index % 2 == 0)
-                    return StateCard(
-                      area: state.localStatics[index - (index ~/ 2)],
-                    );
+                     return StateCard(
+                       area: state.localStatics[index - (index ~/ 2)]??'',
+                     );
                   return SizedBox(height: 5);
                 },
               ),

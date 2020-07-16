@@ -12,46 +12,50 @@ class ConceptScreen extends StatelessWidget {
     return Scaffold(
       appBar: PreferredSize(
         child: SafeArea(
-          child: Container(
-            height: 200,
-            child: Material(
-              color: Theme.of(context).cardColor,
-              elevation: 2.5,
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        IconButton(
-                          icon: Icon(Icons.arrow_back_ios),
-                          onPressed: () => Navigator.pop(context),
+          child: GestureDetector(
+      onVerticalDragUpdate: (_) => Navigator.pop(context),
+      onHorizontalDragUpdate: (_) => Navigator.pop(context),
+                      child: Container(
+              height: 200,
+              child: Material(
+                color: Theme.of(context).cardColor,
+                elevation: 2.5,
+                child: Padding(
+                  padding:
+                      const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10),
+                  child: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Row(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          IconButton(
+                            icon: Icon(Icons.arrow_back_ios),
+                            onPressed: () => Navigator.pop(context),
+                          ),
+                        ],
+                      ),
+                      Hero(
+                        tag: 'assets/images/concept.svg',
+                        child: SvgPicture.asset(
+                          'assets/images/concept.svg',
+                          color: Theme.of(context).primaryColor,
                         ),
-                      ],
-                    ),
-                    Hero(
-                      tag: 'assets/images/concept.svg',
-                      child: SvgPicture.asset(
-                        'assets/images/concept.svg',
-                        color: Theme.of(context).primaryColor,
                       ),
-                    ),
-                    Hero(
-                      tag: 'تصحيح المفاهيم المغلوطة',
-                      child: Text(
-                        'تصحيح المفاهيم المغلوطة',
-                        style: Theme.of(context)
-                            .textTheme
-                            .headline6
-                            .copyWith(fontSize: 15),
+                      Hero(
+                        tag: 'تصحيح المفاهيم المغلوطة',
+                        child: Text(
+                          'تصحيح المفاهيم المغلوطة',
+                          style: Theme.of(context)
+                              .textTheme
+                              .headline6
+                              .copyWith(fontSize: 15),
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
             ),

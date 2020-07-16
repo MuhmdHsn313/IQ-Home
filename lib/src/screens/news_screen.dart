@@ -20,6 +20,9 @@ class NewsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print("=======================================");
+    print(news.createDateTime);
+    print(news.lastChangedDateTime);
     return Scaffold(
       appBar: PreferredSize(
         child: SafeArea(
@@ -45,6 +48,7 @@ class NewsScreen extends StatelessWidget {
                             news.source.logo,
                           ),
                         ),
+                        
                         Expanded(
                           child: Padding(
                             padding:
@@ -68,6 +72,7 @@ class NewsScreen extends StatelessWidget {
                       ],
                     ),
                   ),
+                  SizedBox(height: 5,),
                   Hero(
                     tag: '${news.id}-title',
                     child: Text(

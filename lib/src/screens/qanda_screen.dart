@@ -11,6 +11,7 @@ class QandAScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      
       body: SafeArea(
         child: BlocBuilder<QnABloc, QnAState>(
           bloc: BlocProvider.of<QnABloc>(context),

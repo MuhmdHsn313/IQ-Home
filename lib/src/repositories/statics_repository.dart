@@ -10,7 +10,8 @@ class StaticsRepository extends HomeRepository<AreaStatics> {
   Future<List<AreaStatics>> fetchLocal() async {
     await super.initialBox();
 
-    if (await connectionChecker.hasConnection) {
+  try{
+      if (await connectionChecker.hasConnection) {
       final areaResponse = await client.get(ApiReference.statics_url);
 
       if (areaResponse.statusCode != 200) {
@@ -29,6 +30,10 @@ class StaticsRepository extends HomeRepository<AreaStatics> {
     } else {
       return box.values.toList();
     }
+
+  }catch (e){
+
+  }
   }
 
   Future<List<AreaStatics>> fetchGlobal() async {

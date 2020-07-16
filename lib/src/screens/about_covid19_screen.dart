@@ -1,21 +1,24 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_linkify/flutter_linkify.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:iqhome/src/screens/qanda_details_screen.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class AboutCovid19Screen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        elevation: 0,
-        backgroundColor: Theme.of(context).cardColor,
-        iconTheme: IconThemeData(
-          color: Theme.of(context).disabledColor,
-        ),
-        leading: IconButton(
-          icon: Icon(Icons.arrow_back_ios),
-          onPressed: () => Navigator.pop(context),
+      appBar: CustomAppBar(
+              appBar: AppBar(
+          elevation: 0,
+          backgroundColor: Theme.of(context).cardColor,
+          iconTheme: IconThemeData(
+            color: Theme.of(context).disabledColor,
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back_ios),
+            onPressed: () => Navigator.pop(context),
+          ),
         ),
       ),
       body: ListView(
