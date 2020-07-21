@@ -1,0 +1,24 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224.327" height="139.508"
+    viewBox="0 0 224.327 139.508">
+    <g id="security" transform="translate(112.16 -65.277) rotate(45)">
+        <path id="Path_1139" data-name="Path 1139" d="M0,0H104.686V67.3H0Z"
+            transform="translate(34.5 108.528) rotate(-45)" fill="#fff" />
+        <path id="Path_1140" data-name="Path 1140"
+            d="M227.369,178.881l-74.024,74.024L122.42,221.98c30.631-13.139,62.67-32.908,86.628-61.42Z"
+            transform="translate(-71.249 -96.789)" fill="#fff" />
+        <path id="Path_1141" data-name="Path 1141"
+            d="M347.094,78.674l-3.739-3.739,13.483-13.483a23.528,23.528,0,1,0-33.273-33.275L310.083,41.661l-3.74-3.738L319.826,24.44a28.816,28.816,0,1,1,40.753,40.751Z"
+            transform="translate(-194.391 0)" fill="#fff" />
+        <path id="Path_1142" data-name="Path 1142"
+            d="M44.82,369.022a28.817,28.817,0,0,1-20.377-49.191l13.483-13.483,3.738,3.738L28.181,323.571a23.528,23.528,0,1,0,33.275,33.273L74.94,343.36l3.738,3.738L65.195,360.583a28.626,28.626,0,0,1-20.375,8.438Z"
+            transform="translate(0 -194.399)" fill="#fff" />
+        <g id="Group_355" data-name="Group 355" transform="translate(45.849 45.861)">
+            <path id="Path_1143" data-name="Path 1143" d="M0,0H104.686V5.287H0Z"
+                transform="translate(10.573 84.588) rotate(-45)" fill="#8ba" />
+            <path id="Path_1144" data-name="Path 1144" d="M0,0H104.686V5.287H0Z"
+                transform="translate(21.145 95.163) rotate(-45)" fill="#8ba" />
+            <path id="Path_1145" data-name="Path 1145" d="M0,0H104.686V5.287H0Z"
+                transform="translate(0 74.013) rotate(-45)" fill="#8ba" />
+        </g>
+    </g>
+</svg>
