@@ -47,7 +47,6 @@ class AboutAppScreen extends StatelessWidget {
             ),
           ),
           DataTable(
-
             columns: [
               DataColumn(
                 label: Text(
@@ -65,11 +64,11 @@ class AboutAppScreen extends StatelessWidget {
             rows: [
               DataRow(
                 cells: [
-                  DataCell(
-                    Text(
+                  DataCell(Text(
                     'مدير مشروع',
-                    
-                    style: TextStyle(fontFamily: 'Tajawal',),
+                    style: TextStyle(
+                      fontFamily: 'Tajawal',
+                    ),
                   )),
                   DataCell(Text(
                     'محمد منتظر جلال حسين',
@@ -205,6 +204,18 @@ class AboutAppScreen extends StatelessWidget {
                   )),
                   DataCell(Text(
                     'فهد محفوظ محمد',
+                    style: TextStyle(fontFamily: 'Tajawal'),
+                  )),
+                ],
+              ),
+              DataRow(
+                cells: [
+                  DataCell(Text(
+                    'احصائيات',
+                    style: TextStyle(fontFamily: 'Tajawal'),
+                  )),
+                  DataCell(Text(
+                    'علي جاسم محمد',
                     style: TextStyle(fontFamily: 'Tajawal'),
                   )),
                 ],
